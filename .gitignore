@@ -14,6 +14,7 @@ package-lock.json
 .settings/
 *.sublime-workspace
 
+
 # misc
 /.sass-cache
 /.parcel-cache
