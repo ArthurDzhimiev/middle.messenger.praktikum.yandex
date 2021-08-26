@@ -1,0 +1,21 @@
+{
+  "name": "messenger-praktikum",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "./node_modules/.bin/parcel static/index.html",
+    "build": "./node_modules/.bin/parcel build static/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArthurDzhimiev/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "Arthur Dzhimiev",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "parcel": "^2.0.0-rc.0",
+    "sass": "^1.38.1"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7"
+  }
+}
