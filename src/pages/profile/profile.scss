@@ -1,0 +1,102 @@
+@import '../../../static/styles/variables';
+
+.profile {
+  width: 100%;
+  max-width: 415px;
+  padding-top: 90px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.profile__title {
+  margin-bottom: 56px;
+}
+
+.profile__form-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.profile__form {
+  width: 100%;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile__input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.profile__btn-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.profile__info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #EDEDED;
+  padding: 0 8px;
+  max-width: 415px;
+  width: 100%;
+}
+
+.profile__info-name {
+  color: $grey;
+}
+
+.profile__info-value {
+  color: $black;
+}
+
+.profile__btns-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+.profile__avatar{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: $purple;
+  cursor: pointer;
+  margin-bottom: 56px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../../static/images/icons/profile.svg');
+}
+.profile__avatar-btn{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+}
+.profile__avatar-input{
+  visibility: hidden;
+  height: 0;
+}
+.profile__avatar-plus{
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../../static/images/icons/plus.svg');
+}

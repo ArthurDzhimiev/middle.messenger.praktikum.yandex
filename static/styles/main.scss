@@ -1,5 +1,6 @@
 @import "./variables";
 @import "./fonts";
+@import "./colors";
 
 * {
   box-sizing: border-box;
@@ -15,4 +16,18 @@ body {
   height: 100%;
   margin: 0 auto;
   color: $black;
+}
+
+a {
+  cursor: pointer;
+  color: $grey;
+  font-family: "Mulish-Regular";
+  font-size: 16px;
+  line-height: 28px;
+  text-transform: none;
+  text-decoration: none;
+  transition: .2s;
+  &:hover{
+   text-decoration: underline;
+  }
 }

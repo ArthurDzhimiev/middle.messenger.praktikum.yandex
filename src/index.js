@@ -1,9 +1,20 @@
-import Handlebars from 'handlebars/dist/handlebars'
-import  './components/button'
-import template from './index.tmpl'
+import {renderTemplate} from "./utils/renderTemplates";
+import './components/button';
+import './components/input';
+import './pages/signin';
+import './pages/signup';
+import './pages/profile/profile-info';
+import './pages/profile/profile-update-info';
+import './pages/profile/profile-update-password';
+import './pages/errors/404';
+import './pages/errors/505';
+import './pages/chat/chat';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const compiled = Handlebars.compile(template)
-  const html = compiled()
-  document.body.innerHTML = html
+  renderTemplate('chat')
+  document.addEventListener('click', (event) => {
+    if (event.target.id.includes('Open')) {
+      renderTemplate(event.target.id.replace('Open', ''))
+    }
+  })
 })

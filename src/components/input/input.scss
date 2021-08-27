@@ -1,0 +1,19 @@
+@import "../../../static/styles/variables";
+
+.input {
+  display: flex;
+  width: 100%;
+  background-color: $purple;
+  height: 36px;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: none;
+  color: $black;
+
+  ::placeholder {
+    color: $grey;
+    font-family: Mulish-Regular;
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

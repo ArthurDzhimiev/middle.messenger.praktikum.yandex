@@ -1,0 +1,23 @@
+.error {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.error__title {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.error__btn {
+  margin-top: 32px;
+}
+
+.error__description {
+  text-align: center;
+}
