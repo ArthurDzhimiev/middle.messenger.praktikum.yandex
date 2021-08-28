@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel static/index.html --no-source-maps",
-    "build": "./node_modules/.bin/parcel build static/index.html"
+    "build": "parcel build ./static/index.html --no-minify --no-source-maps",
+    "start": "npm i && npm run build && node ./server.js "
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
     "sass": "^1.38.1"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "handlebars": "^4.7.7"
   }
 }

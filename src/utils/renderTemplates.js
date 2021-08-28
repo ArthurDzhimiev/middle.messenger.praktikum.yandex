@@ -20,5 +20,5 @@ const TEMPLATES = {
 
 export function renderTemplate(name, locals = {}, parent = document.body) {
   const template = TEMPLATES[name];
-  document.body.innerHTML = template(locals)
+  parent.innerHTML = template(locals)
 }
