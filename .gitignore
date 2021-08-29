@@ -1,0 +1,23 @@
+# folders
+dist
+/node_modules
+
+# profiling files
+package-lock.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+
+# misc
+/.sass-cache
+/.parcel-cache
+
+# System Files
+.DS_Store

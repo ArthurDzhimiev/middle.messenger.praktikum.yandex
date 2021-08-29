@@ -1,0 +1,40 @@
+.signIn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 90px;
+}
+
+.signIn__title {
+  margin-bottom: 56px;
+}
+
+.signIn__form-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.signIn__form {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signIn__input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.signIn__btn-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}

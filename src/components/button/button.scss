@@ -1,0 +1,22 @@
+@import "../../../static/styles/variables";
+
+.button {
+  display: flex;
+  padding: 12px 48px;
+  cursor: pointer;
+  background-color: $blue;
+  transition: .15s;
+  font-family: Mulish-SemiBold;
+  color: $white;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  &:hover {
+    background-color: $dark-blue;
+  }
+
+}
+
+.button__submit_green {
+  color: green;
+}
