@@ -5,7 +5,7 @@
     "dev": "parcel static/index.html --no-source-maps",
     "build": "parcel build ./static/index.html --no-minify --no-source-maps",
     "start": "npm run build && node ./server.js ",
-    "deploy": "npm i && npm run build"
+    "deploy": "npm run build"
   },
   "repository": {
     "type": "git",
