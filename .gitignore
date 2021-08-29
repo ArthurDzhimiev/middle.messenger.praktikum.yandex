@@ -18,6 +18,7 @@ package-lock.json
 # misc
 /.sass-cache
 /.parcel-cache
+/.cache
 
 # System Files
 .DS_Store
