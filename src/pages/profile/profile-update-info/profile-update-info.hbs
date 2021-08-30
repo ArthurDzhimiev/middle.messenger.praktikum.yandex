@@ -1,0 +1,29 @@
+<div class="profile">
+  <h1 class="h1 profile__title">Update profile</h1>
+  <div class="profile__form-wrapper">
+    <form class="profile__form" action="">
+      <div class="signUp__input">
+        {{> input placeholder="First name" type="text" name="first_name"}}
+      </div>
+      <div class="signUp__input">
+        {{> input placeholder="Second name" type="text" name="second_name"}}
+      </div>
+      <div class="signUp__input">
+        {{> input placeholder="Display name" type="text" name="display_name"}}
+      </div>
+      <div class="signUp__input">
+        {{> input placeholder="Login" type="text" name="login"}}
+      </div>
+      <div class="signUp__input">
+        {{> input placeholder="Email" type="text" name="email"}}
+      </div>
+      <div class="signUp__input">
+        {{> input placeholder="Phone" type="text" name="phone"}}
+      </div>
+      <div class="profile__btn-wrapper">
+        {{> button text="Save" type="button" id="profileInfoOpen" }}
+      </div>
+      <a id="profileInfoOpen">Cancel</a>
+    </form>
+  </div>
+</div>

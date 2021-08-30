@@ -1,0 +1,40 @@
+.signUp {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 90px;
+}
+
+.signUp__title {
+  margin-bottom: 56px;
+}
+
+.signUp__form-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.signUp__form {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signUp__input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.signUp__btn-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
