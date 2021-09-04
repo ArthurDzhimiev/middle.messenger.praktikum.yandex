@@ -4,7 +4,7 @@ import profileInfoTemplate from '../pages/profile/profile-info/profile-info.hbs'
 import profileUpdateInfoTemplate from '../pages/profile/profile-update-info/profile-update-info.hbs';
 import profileUpdatePasswordTemplate from '../pages/profile/profile-update-password/profile-update-password.hbs';
 import notFoundTemplate from '../pages/errors/404/404.hbs';
-import serverErrorTemplate from '../pages/errors/505/505.hbs';
+import serverErrorTemplate from '../pages/errors/505/505.hbs'
 import chatTemplate from '../pages/chat/chat.hbs';
 
 type AvailableTemplates =
