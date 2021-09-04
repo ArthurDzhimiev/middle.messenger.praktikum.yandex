@@ -7,18 +7,28 @@ import notFoundTemplate from '../pages/errors/404/404.hbs';
 import serverErrorTemplate from '../pages/errors/505/505.hbs';
 import chatTemplate from '../pages/chat/chat.hbs';
 
+type AvailableTemplates =
+  'signIn' |
+  'signUp' |
+  'profileInfo' |
+  'profileUpdateInfo' |
+  'profileUpdatePassword' |
+  'notFound' |
+  'serverError' |
+  'chat'
+
 const TEMPLATES = {
   signIn: signInTemplate,
   signUp: signUpTemplate,
   profileInfo: profileInfoTemplate,
   profileUpdateInfo: profileUpdateInfoTemplate,
   profileUpdatePassword: profileUpdatePasswordTemplate,
-  notFound:  notFoundTemplate,
-  serverError:  serverErrorTemplate,
-  chat:  chatTemplate,
+  notFound: notFoundTemplate,
+  serverError: serverErrorTemplate,
+  chat: chatTemplate,
 };
 
-export function renderTemplate(name, locals = {}, parent = document.body) {
+export function renderTemplate(name: AvailableTemplates, locals = {}, parent = document.body) {
   const template = TEMPLATES[name];
   parent.innerHTML = template(locals)
 }

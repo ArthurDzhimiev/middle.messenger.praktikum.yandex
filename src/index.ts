@@ -12,7 +12,7 @@ import './pages/chat/chat';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderTemplate('chat')
-  document.addEventListener('click', (event) => {
+  document.addEventListener('click', (event: any) => {
     if (event.target.id.includes('Open')) {
       renderTemplate(event.target.id.replace('Open', ''))
     }
