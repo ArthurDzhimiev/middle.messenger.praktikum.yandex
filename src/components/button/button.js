@@ -3,6 +3,6 @@ import template from './button.hbs';
 import './button.scss';
 
 Handlebars.registerPartial(
-  "button",
+  'button',
   template
 );

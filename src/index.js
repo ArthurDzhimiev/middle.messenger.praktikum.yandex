@@ -1,4 +1,4 @@
-import {renderTemplate} from "./utils/renderTemplates";
+import {renderTemplate} from './utils/renderTemplates';
 import './components/button';
 import './components/input';
 import './pages/signin';
