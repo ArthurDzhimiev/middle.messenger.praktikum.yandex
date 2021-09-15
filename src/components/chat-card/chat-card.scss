@@ -1,0 +1,83 @@
+@import "../../../static/styles/variables";
+
+.chat-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  justify-content: space-between;
+  &--m {
+    height: 76px;
+    border-bottom: 1px solid $light-grey;
+    transition: .3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $card-grey;
+    }
+  }
+
+  &--s {
+    height: 36px;
+    border-bottom: 0px;
+
+    .chat-card__message-info, .chat-card__last-message {
+      display: none;
+    }
+  }
+}
+
+.chat-card__avatar-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.chat-card__avatar {
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('../../../static/images/avatar.jpg');
+
+  &--m {
+    width: 56px;
+    height: 56px;
+  }
+
+  &--s {
+    width: 30px;
+    height: 30px;
+  }
+
+}
+
+.chat-card__status {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid $white;
+  border-radius: 12px;
+
+  &--online {
+    background-color: $green;
+  }
+
+  &--offline {
+    background-color: $red;
+  }
+}
+
+.chat-card__user-info {
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.chat-card__message-info {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+}

@@ -6,10 +6,17 @@
         {{> input placeholder="Search" type="text" name="text"}}
       </div>
     </div>
+    <div class="chat__list-cards">
+      {{> chatCard status="online" size="m"}}
+    </div>
   </div>
   <div class="chat__body">
-    <div class="chat__body-head"></div>
-    <div class="chat__messages"></div>
+    <div class="chat__body-head">
+      {{> chatCard status="online" size="s"}}
+    </div>
+    <div class="chat__messages">
+
+    </div>
     <div class="chat__message">
       {{> input placeholder="Message..." type="text" name="message"}}
     </div>

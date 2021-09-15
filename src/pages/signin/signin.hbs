@@ -1,17 +1,13 @@
 <div class="signIn">
   <h1 class="h1 signIn__title">Sign in</h1>
   <div class="signIn__form-wrapper">
-    <form class="signIn__form" action="">
+    <form class="signIn__form">
       <div class="signIn__input">
-        {{> input placeholder="Login" type="text" name="login"}}
       </div>
       <div class="signIn__input">
-        {{> input placeholder="Password" type="password" name="password"}}
       </div>
-      <div class="signIn__btn-wrapper">
-        {{> button text="Sign in" type="button" id="chatOpen" }}
-      </div>
-      <a id="signUpOpen">Sign up</a>
+      {{{signInBtn}}}
+      {{{signUpBtn}}}
     </form>
   </div>
 </div>

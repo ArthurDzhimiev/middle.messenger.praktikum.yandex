@@ -1,9 +1,9 @@
-import template from "./button.hbs";
-import "./button.scss";
+import template from "./link-button.hbs";
+import "./link-button.scss";
 import Block from "../../utils/block";
 import compile from "../../utils/compile";
 
-export class Button extends Block {
+export class LinkButton extends Block {
   constructor(props: {
     text: string;
     events?: {
@@ -14,6 +14,6 @@ export class Button extends Block {
   }
 
   render() {
-    return compile(template, { ...this.props });
+    return compile(template, {...this.props});
   }
 }

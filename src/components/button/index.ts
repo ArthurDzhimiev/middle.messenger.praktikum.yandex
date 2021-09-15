@@ -1,1 +1,1 @@
-import './button';
+export { Button as default } from "./button";

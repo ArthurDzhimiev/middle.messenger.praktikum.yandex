@@ -1,34 +1,11 @@
-import signInTemplate from '../pages/signin/signin.hbs';
-import signUpTemplate from '../pages/signup/signup.hbs';
-import profileInfoTemplate from '../pages/profile/profile-info/profile-info.hbs';
-import profileUpdateInfoTemplate from '../pages/profile/profile-update-info/profile-update-info.hbs';
-import profileUpdatePasswordTemplate from '../pages/profile/profile-update-password/profile-update-password.hbs';
-import notFoundTemplate from '../pages/errors/404/404.hbs';
-import serverErrorTemplate from '../pages/errors/505/505.hbs'
-import chatTemplate from '../pages/chat/chat.hbs';
+import Block from "./block";
 
-type AvailableTemplates =
-  'signIn' |
-  'signUp' |
-  'profileInfo' |
-  'profileUpdateInfo' |
-  'profileUpdatePassword' |
-  'notFound' |
-  'serverError' |
-  'chat'
-
-const TEMPLATES = {
-  signIn: signInTemplate,
-  signUp: signUpTemplate,
-  profileInfo: profileInfoTemplate,
-  profileUpdateInfo: profileUpdateInfoTemplate,
-  profileUpdatePassword: profileUpdatePasswordTemplate,
-  notFound: notFoundTemplate,
-  serverError: serverErrorTemplate,
-  chat: chatTemplate,
-};
-
-export function renderTemplate(name: AvailableTemplates, locals = {}, parent = document.body) {
-  const template = TEMPLATES[name];
-  parent.innerHTML = template(locals)
+export function render(query: string, block: Block) {
+  const root = document.querySelector(query);
+  if (!root) {
+    throw new Error("Root not found");
+  }
+  root.innerHTML = "";
+  root.appendChild(block.getContent());
+  return root;
 }

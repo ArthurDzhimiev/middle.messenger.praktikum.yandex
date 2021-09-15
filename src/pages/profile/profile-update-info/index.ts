@@ -1,1 +1,1 @@
-import './profile-update-info';
+import "./profile-update-info";

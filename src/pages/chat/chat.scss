@@ -18,9 +18,12 @@
   flex-direction: column;
   align-items: flex-end;
   padding: 16px 24px;
-  border-bottom: 2px solid $light-grey;
+  border-bottom: 1px solid $light-grey;
 }
-
+.chat__list-cards{
+  overflow: auto;
+  height: calc(100% - 114px);
+}
 .chat__list-search {
   width: 100%;
 }
@@ -52,6 +55,8 @@
 .chat__body-head {
   height: 55px;
   width: 100%;
+  display: flex;
+  align-items: center;
   border-bottom: 2px solid $light-grey;
 }
 
