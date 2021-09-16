@@ -1,1 +1,1 @@
-import "./505";
+export { ServerErrorPage as default } from "./505";

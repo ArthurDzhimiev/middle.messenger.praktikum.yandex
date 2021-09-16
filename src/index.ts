@@ -1,6 +1,6 @@
 import { render } from "./utils/renderTemplates";
-import { SignInPage } from "./pages/signin/signin";
+import {ChatPage} from "./pages/chat/chat";
 
 document.addEventListener("DOMContentLoaded", () => {
-  render("#app", new SignInPage());
+  render("#app", new ChatPage());
 });

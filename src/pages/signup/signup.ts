@@ -5,6 +5,9 @@ import compile from "../../utils/compile";
 import { Button } from "../../components/button/button";
 import { render } from "../../utils/renderTemplates";
 import { SignInPage } from "../signin/signin";
+import { Input } from "../../components/input/input";
+import { LinkButton } from "../../components/link-button/link-button";
+import { InputsProps } from "../../utils/forms";
 
 export class SignUpPage extends Block {
   constructor() {
@@ -20,32 +23,23 @@ export class SignUpPage extends Block {
         },
       },
     });
+    const signInBtn = new LinkButton({
+      text: "Sign in",
+      events: {
+        click: () => {
+          render("#app", new SignInPage());
+        },
+      },
+    });
     return compile(template, {
+      signInBtn,
       signUpBtn,
+      firstName: new Input(InputsProps.firstName, "signUp__input"),
+      secondName: new Input(InputsProps.secondName, "signUp__input"),
+      login: new Input(InputsProps.login, "signUp__input"),
+      email: new Input(InputsProps.email, "signUp__input"),
+      phone: new Input(InputsProps.phone, "signUp__input"),
+      password: new Input(InputsProps.password, "signUp__input"),
     });
   }
-
-  // <form class="signUp__form" action="">
-  //   <div class="signUp__input">
-  //     {{> input placeholder="First name" type="text" name="first_name"}}
-  // </div>
-  // <div class="signUp__input">
-  //   {{> input placeholder="Second name" type="text" name="second_name"}}
-  // </div>
-  // <div class="signUp__input">
-  //   {{> input placeholder="Login" type="text" name="login"}}
-  // </div>
-  // <div class="signUp__input">
-  //   {{> input placeholder="Email" type="text" name="email"}}
-  // </div>
-  // <div class="signUp__input">
-  //   {{> input placeholder="Phone" type="text" name="phone"}}
-  // </div>
-  // <div class="signUp__input">
-  //   {{> input placeholder="Password" type="password" name="password"}}
-  // </div>
-  // <div class="signUp__btn-wrapper">
-  //   {{> button text="Sign up" type="button" id="chatOpen" }}
-  // </div>
-  // </form>
 }

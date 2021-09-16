@@ -1,1 +1,1 @@
-import "./profile-info";
+export { ProfileInfoPage as default } from "./profile-info";

@@ -1,1 +1,1 @@
-import './profile-update-password';
+export { ProfileUpdatePasswordPage as default } from "./profile-update-password";

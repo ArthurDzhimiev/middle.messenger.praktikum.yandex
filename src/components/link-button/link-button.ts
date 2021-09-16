@@ -6,6 +6,7 @@ import compile from "../../utils/compile";
 export class LinkButton extends Block {
   constructor(props: {
     text: string;
+    color?: string;
     events?: {
       click: () => void;
     };

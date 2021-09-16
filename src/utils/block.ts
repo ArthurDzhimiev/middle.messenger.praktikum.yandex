@@ -13,15 +13,17 @@ export default class Block {
   _meta: {
     tagName: string;
     props: object;
+    wrapperClassName?: string;
   } | null = null;
   eventBus: EventBus;
   props: object;
   public id = nanoid(6);
 
-  constructor(tagName = "div", props = {}) {
+  constructor(tagName = "div", props = {}, wrapperClassName?: string) {
     this._meta = {
       tagName,
       props,
+      wrapperClassName,
     };
 
     this.props = this._makePropsProxy(props);
@@ -41,7 +43,9 @@ export default class Block {
 
   _createResources() {
     const tagName = this._meta?.tagName || "";
+
     this._element = this._createDocumentElement(tagName);
+    this._element.className = this._meta?.wrapperClassName || "";
   }
 
   init() {
@@ -130,11 +134,11 @@ export default class Block {
 
   _removeEvents() {
     const events: Record<string, () => void> = (this.props as any).events;
-    if (!events || !this._element) {
+    if (!events || !this._element.firstChild) {
       return;
     }
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.removeEventListener(event, listener);
+      this._element.firstChild!.removeEventListener(event, listener);
     });
   }
 
@@ -144,17 +148,7 @@ export default class Block {
       return;
     }
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.addEventListener(event, listener);
+      this._element.firstChild!.addEventListener(event, listener);
     });
-  }
-
-  show() {
-    this._element.style.display = "block";
-    this.eventBus.emit(EVENTS.FLOW_RENDER);
-  }
-
-  hide() {
-    this._element.style.display = "none";
-    this.eventBus.emit(EVENTS.FLOW_RENDER);
   }
 }
