@@ -7,7 +7,7 @@
   padding: 10px 20px;
   justify-content: space-between;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 
   &:hover {
     background-color: $card-grey;
@@ -20,9 +20,10 @@
 
   &--s {
     height: 36px;
-    border-bottom: 0px;
+    border-bottom: 0;
 
-    .chat-card__message-info, .chat-card__last-message {
+    .chat-card__message-info,
+    .chat-card__last-message {
       display: none;
     }
   }
@@ -38,7 +39,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url('../../../static/images/avatar.jpg');
+  background-image: url("../../../static/images/avatar.jpg");
 
   &--m {
     width: 56px;
@@ -49,7 +50,6 @@
     width: 30px;
     height: 30px;
   }
-
 }
 
 .chat-card__status {

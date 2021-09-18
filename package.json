@@ -6,7 +6,7 @@
     "build": "parcel build ./static/index.html --no-minify --no-source-maps",
     "start": "npm run build && node ./server.js ",
     "deploy": "npm run build",
-    "lint": "node_modules/.bin/eslint ."
+    "lint": "stylelint \"**/*.scss\" && node_modules/.bin/eslint ."
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,14 @@
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "prettier": "2.4.0",
     "sass": "^1.38.1",
+    "stylelint": "^13.13.1",
     "typescript": "^4.4.2"
   },
   "dependencies": {
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
     "nanoid": "^3.1.25",
+    "stylelint-scss": "^3.21.0",
     "tslint": "^6.1.3"
   }
 }

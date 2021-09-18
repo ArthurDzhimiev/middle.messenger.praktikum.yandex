@@ -5,7 +5,7 @@
   padding: 12px 48px;
   cursor: pointer;
   background-color: $blue;
-  transition: .15s;
+  transition: 0.15s;
   font-family: Mulish-SemiBold;
   color: $white;
   font-size: 16px;
@@ -14,7 +14,6 @@
   &:hover {
     background-color: $dark-blue;
   }
-
 }
 
 .button__submit_green {
