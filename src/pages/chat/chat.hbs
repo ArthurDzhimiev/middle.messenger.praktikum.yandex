@@ -15,7 +15,9 @@
       {{{chatHeaderCard}}}
     </div>
     <div class="chat__messages">
-
+      {{#each chatMessages}}
+        {{{this}}}
+      {{/each}}
     </div>
     <div class="chat__message">
       {{{inputMessage}}}

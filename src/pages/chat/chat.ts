@@ -8,6 +8,30 @@ import { ProfileInfoPage } from "../profile/profile-info/profile-info";
 import { ChatCard } from "../../components/chat-card/chat-card";
 import { Input } from "../../components/input/input";
 import { InputsProps } from "../../utils/validation";
+import { ChatMessage } from "../../components/chat-message/chat-message";
+
+const messages = [
+  {
+    ownMessage: true,
+    text: "But don’t worry cause we are all learning here But don’t worry cause we are all learning here But don’t worry cause we are all learning here",
+    time: "16:46",
+  },
+  {
+    ownMessage: false,
+    text: "But don’t worry cause we are all learning here",
+    time: "16:46",
+  },
+  {
+    ownMessage: true,
+    text: "But don’t worry cause we are all learning here",
+    time: "16:46",
+  },
+  {
+    ownMessage: false,
+    text: "But don’t worry cause we are all learning here",
+    time: "16:46",
+  },
+];
 
 export class ChatPage extends Block {
   constructor() {
@@ -37,6 +61,13 @@ export class ChatPage extends Block {
       time: "13:00",
       size: "s",
     });
+    const chatMessages = messages.map((message) => {
+      return new ChatMessage({
+        text: message.text,
+        time: message.time,
+        type: message.ownMessage ? "blue" : "white",
+      })._element.innerHTML;
+    });
     const inputSearch = new Input({
       ...InputsProps.search,
       events: {
@@ -53,6 +84,7 @@ export class ChatPage extends Block {
       chatHeaderCard,
       inputSearch,
       inputMessage,
+      chatMessages,
     });
   }
 }
