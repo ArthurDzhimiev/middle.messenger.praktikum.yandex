@@ -1,4 +1,5 @@
 import EventBus from "./event-bus";
+// @ts-ignore
 import { nanoid } from "nanoid";
 
 enum EVENTS {

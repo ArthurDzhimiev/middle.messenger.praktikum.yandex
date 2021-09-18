@@ -115,9 +115,9 @@ export const InputsProps: Record<string, InputProps> = {
     name: "search",
   },
   message: {
-    placeholder: "Search",
+    placeholder: "Message",
     type: "text",
-    name: "search",
+    name: "message",
     validation: "required",
     events: {
       blur: (e: Event) => {
