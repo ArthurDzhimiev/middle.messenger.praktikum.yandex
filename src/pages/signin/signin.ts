@@ -7,24 +7,35 @@ import { LinkButton } from "../../components/link-button/link-button";
 import { render } from "../../utils/renderTemplates";
 import { SignUpPage } from "../signup/signup";
 import { Input } from "../../components/input/input";
-import { InputsProps } from "../../utils/forms";
-import {ChatPage} from "../chat/chat";
+import {
+  collectFormData,
+  InputsProps,
+  validateForm,
+} from "../../utils/validation";
+import { ChatPage } from "../chat/chat";
 
 export class SignInPage extends Block {
   constructor() {
     super("div");
   }
 
-  blur(inputType: string) {
-    console.log(inputType);
+  signIn() {
+    const isValidForm: boolean = validateForm("#SignIn");
+    if (isValidForm) {
+      console.log(collectFormData("#SignIn"));
+      render("#app", new ChatPage());
+      return true;
+    }
+    throw new Error("Form is invalid");
   }
 
   render(): DocumentFragment {
     const signInBtn = new Button({
       text: "Sign in",
+      type: "submit",
       events: {
         click: () => {
-          render("#app", new ChatPage());
+          this.signIn();
         },
       },
     });
@@ -39,8 +50,11 @@ export class SignInPage extends Block {
     return compile(template, {
       signInBtn,
       signUpBtn,
-      loginInput: new Input(InputsProps.login, "signIn__input"),
-      passwordInput: new Input(InputsProps.password, "signIn__input"),
+      login: new Input(InputsProps.login),
+      password: new Input({
+        ...InputsProps.password,
+        errorText: "Invalid password",
+      }),
     });
   }
 }

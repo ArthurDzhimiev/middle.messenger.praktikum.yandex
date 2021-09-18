@@ -11,10 +11,10 @@ export class NotFoundPage extends Block {
     super("div");
   }
 
-
   render(): DocumentFragment {
     const backBtn = new Button({
       text: "Open home page",
+      type: "button",
       events: {
         click: () => {
           render("#app", new ChatPage());
@@ -22,7 +22,7 @@ export class NotFoundPage extends Block {
       },
     });
     return compile(template, {
-      backBtn
+      backBtn,
     });
   }
 }

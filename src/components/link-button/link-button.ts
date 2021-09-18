@@ -15,6 +15,6 @@ export class LinkButton extends Block {
   }
 
   render() {
-    return compile(template, {...this.props});
+    return compile(template, { ...this.props });
   }
 }

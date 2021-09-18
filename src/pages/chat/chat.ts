@@ -7,7 +7,7 @@ import { render } from "../../utils/renderTemplates";
 import { ProfileInfoPage } from "../profile/profile-info/profile-info";
 import { ChatCard } from "../../components/chat-card/chat-card";
 import { Input } from "../../components/input/input";
-import { blurInput } from "../../utils/forms";
+import { InputsProps } from "../../utils/validation";
 
 export class ChatPage extends Block {
   constructor() {
@@ -38,25 +38,14 @@ export class ChatPage extends Block {
       size: "s",
     });
     const inputSearch = new Input({
-      placeholder: "Search",
-      type: "text",
-      name: "search",
+      ...InputsProps.search,
       events: {
         blur: () => {
-          blurInput("search");
+          console.log("blur");
         },
       },
     });
-    const inputMessage = new Input({
-      placeholder: "Message...",
-      type: "text",
-      name: "message",
-      events: {
-        blur: () => {
-          blurInput("search");
-        },
-      },
-    });
+    const inputMessage = new Input(InputsProps.message);
 
     return compile(template, {
       profileLink,

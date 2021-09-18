@@ -8,7 +8,7 @@ import { ProfileUpdatePasswordPage } from "../profile-update-password/profile-up
 import { ProfileUpdateInfoPage } from "../profile-update-info/profile-update-info";
 import { NotFoundPage } from "../../errors/404/404";
 import { ServerErrorPage } from "../../errors/505/505";
-import {SignInPage} from "../../signin/signin";
+import { SignInPage } from "../../signin/signin";
 
 export class ProfileInfoPage extends Block {
   constructor() {
@@ -64,7 +64,7 @@ export class ProfileInfoPage extends Block {
       updatePassBtn,
       notFoundErrBtn,
       serverErrBtn,
-      logOutBtn
+      logOutBtn,
     });
   }
 }

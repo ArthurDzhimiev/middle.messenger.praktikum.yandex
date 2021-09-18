@@ -7,20 +7,33 @@ import { render } from "../../utils/renderTemplates";
 import { SignInPage } from "../signin/signin";
 import { Input } from "../../components/input/input";
 import { LinkButton } from "../../components/link-button/link-button";
-import { InputsProps } from "../../utils/forms";
+import {
+  collectFormData,
+  InputsProps,
+  validateForm,
+} from "../../utils/validation";
 
 export class SignUpPage extends Block {
   constructor() {
     super("div");
   }
 
+  signUp() {
+    const isValidForm: boolean = validateForm("#SignUp");
+    if (isValidForm) {
+      console.log(collectFormData("#SignUp"));
+      render("#app", new SignInPage());
+      return true;
+    }
+    throw new Error("Form is invalid");
+  }
+
   render(): DocumentFragment {
     const signUpBtn = new Button({
       text: "Sign up",
+      type: "submit",
       events: {
-        click: () => {
-          render("#app", new SignInPage());
-        },
+        click: () => this.signUp(),
       },
     });
     const signInBtn = new LinkButton({
@@ -34,12 +47,12 @@ export class SignUpPage extends Block {
     return compile(template, {
       signInBtn,
       signUpBtn,
-      firstName: new Input(InputsProps.firstName, "signUp__input"),
-      secondName: new Input(InputsProps.secondName, "signUp__input"),
-      login: new Input(InputsProps.login, "signUp__input"),
-      email: new Input(InputsProps.email, "signUp__input"),
-      phone: new Input(InputsProps.phone, "signUp__input"),
-      password: new Input(InputsProps.password, "signUp__input"),
+      firstName: new Input(InputsProps.firstName),
+      secondName: new Input(InputsProps.secondName),
+      login: new Input(InputsProps.login),
+      email: new Input(InputsProps.email),
+      phone: new Input(InputsProps.phone),
+      password: new Input(InputsProps.password),
     });
   }
 }

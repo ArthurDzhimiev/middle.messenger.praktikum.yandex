@@ -5,6 +5,7 @@ import compile from "../../utils/compile";
 
 export interface ButtonProps {
   text: string;
+  type: string;
   events?: {
     click: () => void;
   };

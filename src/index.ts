@@ -1,6 +1,6 @@
 import { render } from "./utils/renderTemplates";
-import {ChatPage} from "./pages/chat/chat";
+import { ProfileInfoPage } from "./pages/profile/profile-info/profile-info";
 
 document.addEventListener("DOMContentLoaded", () => {
-  render("#app", new ChatPage());
+  render("#app", new ProfileInfoPage());
 });
