@@ -149,7 +149,11 @@ export function validateInput(input: HTMLInputElement) {
 
 export function updateValidationStatus(el: HTMLElement, isValid: boolean) {
   const parent = el.parentElement;
-  isValid ? el.classList.remove("input--err") : el.classList.add("input--err");
+  if (isValid) {
+    el.classList.remove("input--err");
+  } else {
+    el.classList.add("input--err");
+  }
   if (parent) {
     const label: HTMLElement | null = parent.querySelector(".label-err");
     if (label) {

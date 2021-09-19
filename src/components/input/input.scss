@@ -10,12 +10,6 @@
   border: none;
   color: $black;
 
-  &::after {
-    content: "123";
-    display: flex;
-    position: relative;
-  }
-
   &--err {
     background-color: $pink;
 
