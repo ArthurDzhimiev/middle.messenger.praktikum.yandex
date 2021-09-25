@@ -1,14 +1,16 @@
 @font-face {
-  font-family: 'Mulish-Regular';
-  src: url('../fonts/Mulish-Regular.ttf');
+  font-family: "Mulish-Regular";
+  src: url("../fonts/Mulish-Regular.ttf");
 }
+
 @font-face {
-  font-family: 'Mulish-Bold';
-  src: url('../fonts/Mulish-Bold.ttf');
+  font-family: "Mulish-Bold";
+  src: url("../fonts/Mulish-Bold.ttf");
 }
+
 @font-face {
-  font-family: 'Mulish-SemiBold';
-  src: url('../fonts/Mulish-SemiBold.ttf');
+  font-family: "Mulish-SemiBold";
+  src: url("../fonts/Mulish-SemiBold.ttf");
 }
 
 .super-caption {
@@ -16,28 +18,33 @@
   font-size: 144px;
   line-height: 144px;
 }
+
 .h1 {
   font-family: "Mulish-Bold";
   font-size: 48px;
   line-height: 60px;
 }
+
 .h2 {
   font-family: "Mulish-Bold";
   font-size: 24px;
   line-height: 30px;
 }
+
 .h2 {
   font-family: "Mulish-SemiBold";
   font-size: 16px;
   line-height: 28px;
 }
+
 .p1 {
   font-family: "Mulish-Regular";
   font-size: 14px;
   line-height: 24px;
 }
+
 .p2 {
   font-family: "Mulish-Regular";
-  font-size: 10px;
+  font-size: 12px;
   line-height: 20px;
 }

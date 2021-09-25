@@ -2,9 +2,6 @@
 dist
 /node_modules
 
-# profiling files
-package-lock.json
-
 # IDEs and editors
 /.idea
 .project

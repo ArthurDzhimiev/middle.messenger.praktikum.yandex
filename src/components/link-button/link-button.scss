@@ -1,0 +1,18 @@
+@import "../../../static/styles/variables";
+
+.link-button {
+  cursor: pointer;
+  color: $grey;
+  font-family: "Mulish-Regular";
+  font-size: 16px;
+  line-height: 28px;
+  text-transform: none;
+  text-decoration: none;
+  transition: 0.2s;
+  &--red {
+    color: $red;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}

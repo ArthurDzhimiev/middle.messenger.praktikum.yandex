@@ -10,10 +10,37 @@
   border: none;
   color: $black;
 
+  &--err {
+    background-color: $pink;
+
+    &::placeholder {
+      color: $red;
+    }
+  }
+
   ::placeholder {
     color: $grey;
     font-family: Mulish-Regular;
     font-size: 14px;
     line-height: 24px;
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.label-err {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 14px;
+  display: none;
+  color: $red;
+
+  &--active {
+    display: flex;
   }
 }

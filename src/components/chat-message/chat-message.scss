@@ -1,0 +1,31 @@
+@import "../../../static/styles/variables";
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  padding: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  border-radius: 16px 16px 16px 0px;
+
+  &--blue {
+    background: $blue;
+    border-radius: 16px 16px 0px 16px;
+    color: $white;
+    margin-left: auto;
+    align-items: flex-end;
+
+    .chat-card__message-time {
+      color: $white;
+    }
+  }
+}
+
+.chat-message__text {
+  margin-bottom: 8px;
+}
+
+.chat-card__message-time {
+  color: $grey;
+}
