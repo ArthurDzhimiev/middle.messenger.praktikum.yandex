@@ -152,4 +152,10 @@ export default class Block {
       this._element.firstChild!.addEventListener(event, listener);
     });
   }
+
+  hide() {
+
+  }
+
+  show() {}
 }

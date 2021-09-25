@@ -3,8 +3,6 @@ import template from "./signup.hbs";
 import Block from "../../utils/block";
 import compile from "../../utils/compile";
 import { Button } from "../../components/button/button";
-import { render } from "../../utils/renderTemplates";
-import { SignInPage } from "../signin/signin";
 import { Input } from "../../components/input/input";
 import { LinkButton } from "../../components/link-button/link-button";
 import {
@@ -12,8 +10,10 @@ import {
   InputsProps,
   validateForm,
 } from "../../utils/validation";
+import {Router} from "../../utils/router";
 
 export class SignUpPage extends Block {
+  router = new Router('#app');
   constructor() {
     super("div");
   }
@@ -22,7 +22,7 @@ export class SignUpPage extends Block {
     const isValidForm: boolean = validateForm("#SignUp");
     if (isValidForm) {
       console.log(collectFormData("#SignUp"));
-      render("#app", new SignInPage());
+      this.router.go('/')
       return true;
     }
     throw new Error("Form is invalid");
@@ -40,7 +40,7 @@ export class SignUpPage extends Block {
       text: "Sign in",
       events: {
         click: () => {
-          render("#app", new SignInPage());
+          this.router.go('/')
         },
       },
     });

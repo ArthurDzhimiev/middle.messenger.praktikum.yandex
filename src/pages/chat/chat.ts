@@ -3,12 +3,11 @@ import Block from "../../utils/block";
 import compile from "../../utils/compile";
 import template from "./chat.hbs";
 import { LinkButton } from "../../components/link-button/link-button";
-import { render } from "../../utils/renderTemplates";
-import { ProfileInfoPage } from "../profile/profile-info/profile-info";
 import { ChatCard } from "../../components/chat-card/chat-card";
 import { Input } from "../../components/input/input";
 import { InputsProps } from "../../utils/validation";
 import { ChatMessage } from "../../components/chat-message/chat-message";
+import {Router} from "../../utils/router";
 
 const messages = [
   {
@@ -34,6 +33,8 @@ const messages = [
 ];
 
 export class ChatPage extends Block {
+  router = new Router("#app");
+
   constructor() {
     super("div");
   }
@@ -43,7 +44,7 @@ export class ChatPage extends Block {
       text: "Profile",
       events: {
         click: () => {
-          render("#app", new ProfileInfoPage());
+          this.router.go("/profile");
         },
       },
     });

@@ -4,17 +4,17 @@ import Block from "../../utils/block";
 import { Button } from "../../components/button/button";
 import compile from "../../utils/compile";
 import { LinkButton } from "../../components/link-button/link-button";
-import { render } from "../../utils/renderTemplates";
-import { SignUpPage } from "../signup/signup";
 import { Input } from "../../components/input/input";
 import {
   collectFormData,
   InputsProps,
   validateForm,
 } from "../../utils/validation";
-import { ChatPage } from "../chat/chat";
+import { Router } from "../../utils/router";
 
 export class SignInPage extends Block {
+  router = new Router("#app");
+
   constructor() {
     super("div");
   }
@@ -23,7 +23,7 @@ export class SignInPage extends Block {
     const isValidForm: boolean = validateForm("#SignIn");
     if (isValidForm) {
       console.log(collectFormData("#SignIn"));
-      render("#app", new ChatPage());
+      this.router.go("/messenger");
       return true;
     }
     throw new Error("Form is invalid");
@@ -43,7 +43,7 @@ export class SignInPage extends Block {
       text: "Sign up",
       events: {
         click: () => {
-          render("#app", new SignUpPage());
+          this.router.go("/sign-up");
         },
       },
     });

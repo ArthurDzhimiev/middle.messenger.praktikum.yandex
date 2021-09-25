@@ -10,10 +10,11 @@ import {
 } from "../../../utils/validation";
 import { Button } from "../../../components/button/button";
 import { LinkButton } from "../../../components/link-button/link-button";
-import { ProfileInfoPage } from "../profile-info/profile-info";
-import { render } from "../../../utils/renderTemplates";
+import { Router } from "../../../utils/router";
 
 export class ProfileUpdateInfoPage extends Block {
+  router = new Router("#app");
+
   constructor() {
     super("div");
   }
@@ -22,7 +23,8 @@ export class ProfileUpdateInfoPage extends Block {
     const isValidForm: boolean = validateForm("#UserInfo");
     if (isValidForm) {
       console.log(collectFormData("#UserInfo"));
-      render("#app", new ProfileInfoPage());
+      this.router.go("/profile");
+
       return true;
     }
     throw new Error("Form is invalid");
@@ -40,7 +42,7 @@ export class ProfileUpdateInfoPage extends Block {
       text: "Cancel",
       events: {
         click: () => {
-          render("#app", new ProfileInfoPage());
+          this.router.go("/profile");
         },
       },
     });
