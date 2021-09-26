@@ -11,7 +11,9 @@ import {
   validateForm,
 } from "../../utils/validation";
 import { Router } from "../../utils/router";
+import {UserSignInController} from "../../controllers/sign-in.controller";
 
+const userSignInController = new UserSignInController()
 export class SignInPage extends Block {
   router = new Router("#app");
 
@@ -22,11 +24,10 @@ export class SignInPage extends Block {
   signIn() {
     const isValidForm: boolean = validateForm("#SignIn");
     if (isValidForm) {
-      console.log(collectFormData("#SignIn"));
-      this.router.go("/messenger");
-      return true;
+      userSignInController.signIn(
+        collectFormData("#SignIn")
+      )
     }
-    throw new Error("Form is invalid");
   }
 
   render(): DocumentFragment {

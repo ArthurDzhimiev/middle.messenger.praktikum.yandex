@@ -10,10 +10,14 @@ import {
   InputsProps,
   validateForm,
 } from "../../utils/validation";
-import {Router} from "../../utils/router";
+import { Router } from "../../utils/router";
+import { UserSignUpController } from "../../controllers/sign-up.controller";
+
+const signUpController = new UserSignUpController();
 
 export class SignUpPage extends Block {
-  router = new Router('#app');
+  router = new Router("#app");
+
   constructor() {
     super("div");
   }
@@ -21,11 +25,8 @@ export class SignUpPage extends Block {
   signUp() {
     const isValidForm: boolean = validateForm("#SignUp");
     if (isValidForm) {
-      console.log(collectFormData("#SignUp"));
-      this.router.go('/')
-      return true;
+      signUpController.signUp(collectFormData("#SignUp"));
     }
-    throw new Error("Form is invalid");
   }
 
   render(): DocumentFragment {
@@ -40,7 +41,7 @@ export class SignUpPage extends Block {
       text: "Sign in",
       events: {
         click: () => {
-          this.router.go('/')
+          this.router.go("/");
         },
       },
     });

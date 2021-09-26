@@ -4,6 +4,9 @@ import compile from "../../../utils/compile";
 import template from "./profile-info.hbs";
 import { LinkButton } from "../../../components/link-button/link-button";
 import {Router} from "../../../utils/router";
+import {UserLogOutController} from "../../../controllers/log-out.controller";
+
+const userLogOutController = new UserLogOutController()
 
 export class ProfileInfoPage extends Block {
   router = new Router("#app");
@@ -52,7 +55,7 @@ export class ProfileInfoPage extends Block {
       color: "red",
       events: {
         click: () => {
-          this.router.go("/");
+          userLogOutController.logOut()
         },
       },
     });

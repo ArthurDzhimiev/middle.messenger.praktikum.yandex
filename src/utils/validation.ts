@@ -178,7 +178,7 @@ export function validateForm(formSelector: string): boolean {
   return !errorsCount;
 }
 
-export function collectFormData(formSelector: string) {
+export function collectFormData(formSelector: string): any {
   const form = document.querySelector(formSelector);
   const formData: Record<string, string> = {};
   if (form) {

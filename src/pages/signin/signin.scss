@@ -3,7 +3,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;
   padding-top: 90px;
+  align-items: center;
 }
 
 .signIn__title {
@@ -23,6 +25,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.signIn__form-err{
+  margin-bottom: 16px;
 }
 
 .signIn__input {

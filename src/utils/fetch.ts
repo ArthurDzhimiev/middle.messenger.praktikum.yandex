@@ -11,28 +11,19 @@ interface HTTPOptions {
   data?: Record<string, unknown> | null;
 }
 
-function queryStringify(data) {
-  let stringifyData = "";
-  Object.keys(data).forEach((key, i) => {
-    const value = Array.isArray(data[key])
-      ? data[key].join(",")
-      : `${data[key]}`;
-    return (stringifyData += `${i === 0 ? "?" : "&"}${key}=${value}`);
-  });
-  return stringifyData;
-}
-
 export class HTTPTransport {
-  get = (url: string, options: HTTPOptions) => {
+  baseUrl = "https://ya-praktikum.tech/api/v2";
+
+  get = (url: string, options: HTTPOptions = {}) => {
     return this.request(url, METHODS.GET, options, options.timeout);
   };
-  put = (url: string, options: HTTPOptions) => {
+  put = (url: string, options: HTTPOptions = {}) => {
     return this.request(url, METHODS.PUT, options, options.timeout);
   };
-  post = (url: string, options: HTTPOptions) => {
+  post = (url: string, options: HTTPOptions = {}) => {
     return this.request(url, METHODS.POST, options, options.timeout);
   };
-  delete = (url: string, options: HTTPOptions) => {
+  delete = (url: string, options: HTTPOptions = {}) => {
     return this.request(url, METHODS.DELETE, { ...options }, options.timeout);
   };
 
@@ -40,14 +31,22 @@ export class HTTPTransport {
     const data = options.data;
     const headers = options.headers || {};
     if (!headers.contentType) {
-      headers.contentType = "application/json";
+      headers["content-type"] = "application/json";
     }
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url + (data ? queryStringify(data) : ""));
+      xhr.open(method, this.baseUrl + url);
       xhr.timeout = timeout;
+      xhr.withCredentials = true;
       xhr.onload = function () {
-        resolve(xhr);
+        if (this.status >= 200 && this.status < 300) {
+          resolve(xhr.response);
+        } else {
+          reject({
+            status: this.status,
+            statusText: JSON.parse(this.response),
+          });
+        }
       };
 
       xhr.onabort = reject;
@@ -59,7 +58,7 @@ export class HTTPTransport {
       if (method === METHODS.GET) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
       }
     });
   }

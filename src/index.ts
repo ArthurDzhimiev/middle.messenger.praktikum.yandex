@@ -1,13 +1,15 @@
-import {Router} from "./utils/router";
-import {SignInPage} from "./pages/signin/signin";
-import {SignUpPage} from "./pages/signup/signup";
-import {ChatPage} from "./pages/chat/chat";
-import {ProfileInfoPage} from "./pages/profile/profile-info/profile-info";
-import {ProfileUpdateInfoPage} from "./pages/profile/profile-update-info/profile-update-info";
-import {ProfileUpdatePasswordPage} from "./pages/profile/profile-update-password/profile-update-password";
-import {NotFoundPage} from "./pages/errors/404/404";
-import {ServerErrorPage} from "./pages/errors/505/505";
+import { Router } from "./utils/router";
+import { SignInPage } from "./pages/signin/signin";
+import { SignUpPage } from "./pages/signup/signup";
+import { ChatPage } from "./pages/chat/chat";
+import { ProfileInfoPage } from "./pages/profile/profile-info/profile-info";
+import { ProfileUpdateInfoPage } from "./pages/profile/profile-update-info/profile-update-info";
+import { ProfileUpdatePasswordPage } from "./pages/profile/profile-update-password/profile-update-password";
+import { NotFoundPage } from "./pages/errors/404/404";
+import { ServerErrorPage } from "./pages/errors/505/505";
+import { UserSignInController } from "./controllers/sign-in.controller";
 
+const userSignInController = new UserSignInController();
 document.addEventListener("DOMContentLoaded", () => {
   const router = new Router("#app");
   router
@@ -20,4 +22,5 @@ document.addEventListener("DOMContentLoaded", () => {
     .use("/404", NotFoundPage)
     .use("/500", ServerErrorPage)
     .start();
+  userSignInController.getUser();
 });
