@@ -85,6 +85,9 @@
   top: 0;
   left: 0;
   cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
 }
 .profile__avatar-input {
   visibility: hidden;

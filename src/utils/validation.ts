@@ -189,3 +189,10 @@ export function collectFormData(formSelector: string): any {
   }
   return formData;
 }
+
+export function settFormErr(error: any, selector = "#FormErr") {
+  const errEl = document.querySelector(selector);
+  if (errEl) {
+    errEl.innerHTML = error.statusText.reason;
+  }
+}

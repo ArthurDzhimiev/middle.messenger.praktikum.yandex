@@ -9,6 +9,7 @@ export interface InputProps {
   placeholder: string;
   errorText?: string;
   validation?: string;
+  value?: string;
   events?: {
     blur: (e: any) => void;
     focus?: (e: any) => void;

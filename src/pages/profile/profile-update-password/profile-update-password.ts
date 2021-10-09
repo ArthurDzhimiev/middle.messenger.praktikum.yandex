@@ -11,6 +11,8 @@ import { Input } from "../../../components/input/input";
 import { Button } from "../../../components/button/button";
 import { LinkButton } from "../../../components/link-button/link-button";
 import {Router} from "../../../utils/router";
+import {UserController} from "../../../controllers/user.controller";
+const userController = new UserController();
 
 export class ProfileUpdatePasswordPage extends Block {
   router = new Router("#app");
@@ -22,11 +24,8 @@ export class ProfileUpdatePasswordPage extends Block {
   updatePassword() {
     const isValidForm: boolean = validateForm("#UpdatePassword");
     if (isValidForm) {
-      console.log(collectFormData("#UpdatePassword"));
-      this.router.go("/profile");
-      return true;
+      userController.updateUserPassword(collectFormData("#UpdatePassword"));
     }
-    throw new Error("Form is invalid");
   }
 
   render(): DocumentFragment {
@@ -51,12 +50,14 @@ export class ProfileUpdatePasswordPage extends Block {
       oldPassword: new Input({
         ...InputsProps.password,
         placeholder: "Old password",
-        name: "old_password",
+        errorText: 'Old password is required',
+        validation: 'required',
+        name: "oldPassword",
       }),
       newPassword: new Input({
         ...InputsProps.password,
         placeholder: "New password",
-        name: "new_password",
+        name: "newPassword",
       }),
     });
   }

@@ -11,9 +11,9 @@ import {
   validateForm,
 } from "../../utils/validation";
 import { Router } from "../../utils/router";
-import { UserSignUpController } from "../../controllers/sign-up.controller";
+import {AuthController} from "../../controllers/auth.controller";
 
-const signUpController = new UserSignUpController();
+const authController = new AuthController();
 
 export class SignUpPage extends Block {
   router = new Router("#app");
@@ -25,7 +25,7 @@ export class SignUpPage extends Block {
   signUp() {
     const isValidForm: boolean = validateForm("#SignUp");
     if (isValidForm) {
-      signUpController.signUp(collectFormData("#SignUp"));
+      authController.signUp(collectFormData("#SignUp"));
     }
   }
 

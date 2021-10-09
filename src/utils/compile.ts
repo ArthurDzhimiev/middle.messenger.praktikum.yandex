@@ -2,7 +2,7 @@ import Block from "./block";
 
 export default function compile(
   template: (ctx: any) => string,
-  props: Record<string, Block | string> = {}
+  props: Record<string, unknown> = {}
 ): DocumentFragment {
   const fragment = document.createElement("template");
   const components: Record<string, Block> = {};

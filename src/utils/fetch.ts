@@ -8,29 +8,37 @@ enum METHODS {
 interface HTTPOptions {
   timeout?: number;
   headers?: Record<string, string>;
-  data?: Record<string, unknown> | null;
+  data?: Record<string, any> | null;
 }
 
 export class HTTPTransport {
-  baseUrl = "https://ya-praktikum.tech/api/v2";
+  baseUrl = "https://ya-praktikum.tech/api/v2/";
 
-  get = (url: string, options: HTTPOptions = {}) => {
+  get = (url: string, options: HTTPOptions = {}): Promise<XMLHttpRequest> => {
     return this.request(url, METHODS.GET, options, options.timeout);
   };
-  put = (url: string, options: HTTPOptions = {}) => {
+  put = (url: string, options: HTTPOptions = {}): Promise<XMLHttpRequest> => {
     return this.request(url, METHODS.PUT, options, options.timeout);
   };
-  post = (url: string, options: HTTPOptions = {}) => {
+  post = (url: string, options: HTTPOptions = {}): Promise<XMLHttpRequest> => {
     return this.request(url, METHODS.POST, options, options.timeout);
   };
-  delete = (url: string, options: HTTPOptions = {}) => {
+  delete = (
+    url: string,
+    options: HTTPOptions = {}
+  ): Promise<XMLHttpRequest> => {
     return this.request(url, METHODS.DELETE, { ...options }, options.timeout);
   };
 
-  request(url: string, method: METHODS, options: HTTPOptions, timeout = 5000) {
+  request(
+    url: string,
+    method: METHODS,
+    options: HTTPOptions,
+    timeout = 5000
+  ): Promise<XMLHttpRequest> {
     const data = options.data;
     const headers = options.headers || {};
-    if (!headers.contentType) {
+    if (!headers["content-type"] && !(data instanceof FormData)) {
       headers["content-type"] = "application/json";
     }
     return new Promise((resolve, reject) => {
@@ -58,7 +66,11 @@ export class HTTPTransport {
       if (method === METHODS.GET) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        if (data instanceof FormData) {
+          xhr.send(data);
+        } else {
+          xhr.send(JSON.stringify(data));
+        }
       }
     });
   }

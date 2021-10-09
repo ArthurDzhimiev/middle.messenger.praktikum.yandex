@@ -7,9 +7,9 @@ import { ProfileUpdateInfoPage } from "./pages/profile/profile-update-info/profi
 import { ProfileUpdatePasswordPage } from "./pages/profile/profile-update-password/profile-update-password";
 import { NotFoundPage } from "./pages/errors/404/404";
 import { ServerErrorPage } from "./pages/errors/505/505";
-import { UserSignInController } from "./controllers/sign-in.controller";
+import { AuthController } from "./controllers/auth.controller";
 
-const userSignInController = new UserSignInController();
+const userSignInController = new AuthController();
 document.addEventListener("DOMContentLoaded", () => {
   const router = new Router("#app");
   router
