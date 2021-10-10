@@ -65,6 +65,14 @@ export class ProfileInfoPage extends Block {
         },
       },
     });
+    const getBackBtn = new LinkButton({
+      text: "Go back",
+      events: {
+        click: () => {
+          this.router.go("/messenger");
+        },
+      },
+    });
     const notFoundErrBtn = new LinkButton({
       text: "Open 404 page",
       color: "red",
@@ -99,6 +107,7 @@ export class ProfileInfoPage extends Block {
       notFoundErrBtn,
       serverErrBtn,
       logOutBtn,
+      getBackBtn
     });
   }
 }

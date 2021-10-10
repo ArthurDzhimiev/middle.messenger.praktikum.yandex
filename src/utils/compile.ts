@@ -2,7 +2,7 @@ import Block from "./block";
 
 export default function compile(
   template: (ctx: any) => string,
-  props: Record<string, unknown> = {}
+  props: any = {}
 ): DocumentFragment {
   const fragment = document.createElement("template");
   const components: Record<string, Block> = {};
@@ -10,6 +10,14 @@ export default function compile(
     if (value instanceof Block) {
       components[value.id] = value;
       props[name] = `<div id="id-${value.id}"></div>`;
+    }
+    if (Array.isArray(value)) {
+      value.forEach((val, i) => {
+        if (val instanceof Block) {
+          components[val.id] = val;
+          props[name][i] = `<div id="id-${val.id}"></div>`;
+        }
+      });
     }
   });
   fragment.innerHTML = template(props);

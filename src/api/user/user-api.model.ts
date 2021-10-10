@@ -1,5 +1,5 @@
 export interface User {
-  _id: string;
+  id: string;
   avatar: string;
   display_name: string;
   first_name: string;
@@ -22,6 +22,9 @@ export interface UpdateUserAvatarBody {
   avatar: string;
 }
 
+export interface SearchUserBody {
+  login: string;
+}
 export interface UpdateUserPasswordBody {
   oldPassword: string;
   newPassword: string;

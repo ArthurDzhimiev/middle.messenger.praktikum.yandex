@@ -1,26 +1,27 @@
-<div class="chat">
-  <div class="chat__list">
-    <div class="chat__list-head">
-      {{{profileLink}}}
-      <div class="chat__list-search">
-        {{{inputSearch}}}
-      </div>
-    </div>
-    <div class="chat__list-cards">
-      {{{chatCard}}}
-    </div>
-  </div>
-  <div class="chat__body">
-    <div class="chat__body-head">
-      {{{chatHeaderCard}}}
-    </div>
-    <div class="chat__messages">
-      {{#each chatMessages}}
-        {{{this}}}
-      {{/each}}
-    </div>
-    <div class="chat__message">
-      {{{inputMessage}}}
-    </div>
+<div class="chat__body-head chat__body-head--{{chatStatus}}">
+  <p class="h2">{{{chat.title}}}</p>
+  {{{usersModalBtn}}}
+</div>
+<div class="h1 chat__body-banner chat__body-banner--{{chatStatus}} color-grey">
+  Select chat from list
+</div>
+<div id="ChatMessages" class="chat__messages chat__messages--{{chatStatus}}">
+  {{#each chatMessages}}
+    {{{this}}}
+  {{/each}}
+</div>
+<div class="chat__message chat__message--{{chatStatus}}">
+  {{{inputMessage}}}
+</div>
+
+<div class="modal" id="userModal">
+  <div class="modal__content">
+    <p class="h1 modal__title">Add user</p>
+    {{{userSearchInput}}}
+    <form id="UsersCheckList" class="modal__form">
+    </form>
+    <div id="usersList"></div>
+    {{{addUsersBtn}}}
+    {{{closeChatModalBtn}}}
   </div>
 </div>

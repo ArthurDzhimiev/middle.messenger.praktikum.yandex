@@ -11,9 +11,10 @@ export interface InputProps {
   validation?: string;
   value?: string;
   events?: {
-    blur: (e: any) => void;
+    blur?: (e: any) => void;
     focus?: (e: any) => void;
     keypress?: (e: any) => void;
+    keyup?: (e: any) => void;
   };
 }
 

@@ -41,6 +41,21 @@ export const InputsProps: Record<string, InputProps> = {
       },
     },
   },
+  chatTitle: {
+    placeholder: "Chat name",
+    type: "text",
+    name: "title",
+    validation: "required",
+    errorText: "Chat name is required",
+    events: {
+      blur: (e: Event) => {
+        inputTouch(e);
+      },
+      focus: (e: Event) => {
+        inputTouch(e);
+      },
+    },
+  },
   login: {
     placeholder: "Login",
     type: "text",
@@ -188,6 +203,20 @@ export function collectFormData(formSelector: string): any {
     });
   }
   return formData;
+}
+
+export function collectCheckList(formSelector: string): any {
+  const form = document.querySelector(formSelector);
+  const selectedList: string[] = [];
+  if (form) {
+    const checkList = form.querySelectorAll("input");
+    checkList.forEach((input) => {
+      if (!!input.checked) {
+        selectedList.push(input.id);
+      }
+    });
+  }
+  return selectedList;
 }
 
 export function settFormErr(error: any, selector = "#FormErr") {

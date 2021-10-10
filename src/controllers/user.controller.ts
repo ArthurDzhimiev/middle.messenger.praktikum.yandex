@@ -1,4 +1,5 @@
 import {
+  SearchUserBody,
   UpdateUserInfoBody,
   UpdateUserPasswordBody,
 } from "../api/user/user-api.model";
@@ -44,6 +45,14 @@ export class UserController {
     try {
       await userService.updateUserPassword(data);
       router.go("/profile");
+    } catch (e) {
+      settFormErr(e);
+    }
+  }
+  async searchUser(data: SearchUserBody) {
+    try {
+      const users = await userService.searchUser(data);
+      return JSON.parse(users)
     } catch (e) {
       settFormErr(e);
     }
