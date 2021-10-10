@@ -8,5 +8,5 @@
 #### 2. Run `npm run start` to build the project and run express server. App listening on port `3000` 
 
 ## Links
-[Figma](https://www.figma.com/file/WtjYenenghq0wFO5EUqdXQ/Chateo-UI-Kit-Messenger-App-Community?node-id=0%3A1) | [Netlify](https://612b3821e4a33d00078b1acc--awesome-bell-06d0fd.netlify.app/)
-[Ссылка на PR Sprint 1](https://github.com/ArthurDzhimiev/middle.messenger.praktikum.yandex/pull/5)
+[Figma](https://www.figma.com/file/WtjYenenghq0wFO5EUqdXQ/Chateo-UI-Kit-Messenger-App-Community?node-id=0%3A1) | [Netlify](https://awesome-bell-06d0fd.netlify.app/)
+[Ссылка на PR Sprint 2](https://github.com/ArthurDzhimiev/middle.messenger.praktikum.yandex/pull/6)

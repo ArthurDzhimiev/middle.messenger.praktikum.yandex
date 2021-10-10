@@ -3,10 +3,11 @@ import Block from "../../../utils/block";
 import compile from "../../../utils/compile";
 import template from "./505.hbs";
 import { Button } from "../../../components/button/button";
-import { ChatPage } from "../../chat/chat";
-import { render } from "../../../utils/renderTemplates";
+import {Router} from "../../../utils/router";
 
 export class ServerErrorPage extends Block {
+  router = new Router("#app");
+
   constructor() {
     super("div");
   }
@@ -17,7 +18,7 @@ export class ServerErrorPage extends Block {
       type: "button",
       events: {
         click: () => {
-          render("#app", new ChatPage());
+          this.router.go("/messenger");
         },
       },
     });

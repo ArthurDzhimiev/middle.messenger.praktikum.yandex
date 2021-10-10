@@ -10,6 +10,7 @@ export class ChatCard extends Block {
     message: string;
     time: string;
     size?: string;
+    events: any
   }) {
     super("div", props);
   }

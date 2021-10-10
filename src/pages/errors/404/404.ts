@@ -3,10 +3,11 @@ import Block from "../../../utils/block";
 import compile from "../../../utils/compile";
 import template from "./404.hbs";
 import { Button } from "../../../components/button/button";
-import { render } from "../../../utils/renderTemplates";
-import { ChatPage } from "../../chat/chat";
+import {Router} from "../../../utils/router";
 
 export class NotFoundPage extends Block {
+  router = new Router("#app");
+
   constructor() {
     super("div");
   }
@@ -17,7 +18,7 @@ export class NotFoundPage extends Block {
       type: "button",
       events: {
         click: () => {
-          render("#app", new ChatPage());
+          this.router.go("/messenger");
         },
       },
     });

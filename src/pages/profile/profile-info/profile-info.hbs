@@ -1,33 +1,39 @@
 <div class="profile">
   <h1 class="h1 profile__title">Profile</h1>
+  <div class="profile__back-btn">
+    {{{getBackBtn}}}
+  </div>
   <input class="profile__avatar-input" type="file" id="avatar" name="avatar"/>
   <div class="profile__avatar">
-    <label class="profile__avatar-btn" for="avatar"></label>
+    <label class="profile__avatar-btn"
+           style="background-image: url('https://ya-praktikum.tech/api/v2/resources{{userInfo.avatar}}')"
+           for="avatar">
+    </label>
     <div class="profile__avatar-plus"></div>
   </div>
   <div class="profile__info-item">
     <div class="profile__info-name p1">Email</div>
-    <div class="profile__info-value p1">example@gmail.com</div>
+    <div class="profile__info-value p1">{{userInfo.email}}</div>
   </div>
   <div class="profile__info-item">
     <div class="profile__info-name p1">Login</div>
-    <div class="profile__info-value p1">Artur_Dzhimiev</div>
+    <div class="profile__info-value p1">{{userInfo.login}}</div>
   </div>
   <div class="profile__info-item">
     <div class="profile__info-name p1">First name</div>
-    <div class="profile__info-value p1">Artur</div>
+    <div class="profile__info-value p1">{{userInfo.first_name}}</div>
   </div>
   <div class="profile__info-item">
     <div class="profile__info-name p1">Second name</div>
-    <div class="profile__info-value p1">Dzhimiev</div>
+    <div class="profile__info-value p1">{{userInfo.second_name}}</div>
   </div>
   <div class="profile__info-item">
     <div class="profile__info-name p1">Display name</div>
-    <div class="profile__info-value p1">Artur_Dzhimiev</div>
+    <div class="profile__info-value p1">{{userInfo.display_name}}</div>
   </div>
   <div class="profile__info-item">
     <div class="profile__info-name p1">Phone</div>
-    <div class="profile__info-value p1">+79853014999</div>
+    <div class="profile__info-value p1">{{userInfo.phone}}</div>
   </div>
 
   <div class="profile__btns-wrapper">
@@ -38,12 +44,12 @@
       <div class="profile__btn">
         {{{updatePassBtn}}}
       </div>
-      <div class="profile__btn">
-        {{{notFoundErrBtn}}}
-      </div>
-      <div class="profile__btn">
-        {{{serverErrBtn}}}
-      </div>
+      <!--      <div class="profile__btn">-->
+      <!--        {{{notFoundErrBtn}}}-->
+      <!--      </div>-->
+      <!--      <div class="profile__btn">-->
+      <!--        {{{serverErrBtn}}}-->
+      <!--      </div>-->
     </div>
     <div class="profile__btn">
       {{{logOutBtn}}}

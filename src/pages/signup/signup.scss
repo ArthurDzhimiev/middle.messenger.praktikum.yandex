@@ -3,7 +3,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;
   padding-top: 90px;
+  align-items: center;
 }
 
 .signUp__title {
