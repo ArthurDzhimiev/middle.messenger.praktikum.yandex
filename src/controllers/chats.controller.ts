@@ -1,8 +1,16 @@
 import ChatsApiService from "../api/chats/chats-api.service";
 import { store } from "../store/index";
 import { deleteChats, setChats } from "../store/chats";
-import { AddUsersBody, CreateChatBody } from "../api/chats/chats-api.model";
-import { deleteChatUsers, setChat, setChatUsers } from "../store/chat";
+import {
+  ChatUpdateUsersBody,
+  CreateChatBody,
+} from "../api/chats/chats-api.model";
+import {
+  deleteChat,
+  deleteChatUsers,
+  setChat,
+  setChatUsers,
+} from "../store/chat";
 import { ChatMessage } from "../components/chat-message/chat-message";
 
 const chatsService = new ChatsApiService();
@@ -39,11 +47,30 @@ export class ChatsController {
     }
   }
 
-  async addUsersToChat(data: AddUsersBody) {
+  async deleteChat(chatId: number) {
+    try {
+      const chat: any = await chatsService.deleteChat(chatId);
+      store.dispatch(deleteChat());
+      return chat;
+    } catch (e) {
+      store.dispatch(deleteChat());
+    }
+  }
+
+  async addUsersToChat(data: ChatUpdateUsersBody) {
     try {
       await chatsService.addUsersToChat(data);
     } catch (e) {
-      store.dispatch(deleteChats());
+      store.dispatch(deleteChatUsers());
+    }
+  }
+
+  async deleteUsersFromChat(data: ChatUpdateUsersBody) {
+    try {
+      await chatsService.deleteUsersFromChat(data);
+      await this.getChatUsers(data.chatId);
+    } catch (e) {
+      store.dispatch(deleteChatUsers());
     }
   }
 
@@ -94,7 +121,10 @@ export class ChatsController {
           chatMessages?.appendChild(
             new ChatMessage({
               text: message.content,
-              time: new Date(message.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+              time: new Date(message.time).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
               type: userId === message.user_id ? "blue" : "white",
             }).getContent()
           );

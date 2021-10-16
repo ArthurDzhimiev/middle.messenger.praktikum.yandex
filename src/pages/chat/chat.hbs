@@ -1,6 +1,10 @@
 <div class="chat__body-head chat__body-head--{{chatStatus}}">
   <p class="h2">{{{chat.title}}}</p>
-  {{{usersModalBtn}}}
+  <div class="chat__body-btns">
+    {{{usersModalBtn}}}
+    {{{editUsersModalBtn}}}
+    {{{deleteChatBtn}}}
+  </div>
 </div>
 <div class="h1 chat__body-banner chat__body-banner--{{chatStatus}} color-grey">
   Select chat from list
@@ -23,5 +27,16 @@
     <div id="usersList"></div>
     {{{addUsersBtn}}}
     {{{closeChatModalBtn}}}
+  </div>
+</div>
+<div class="modal" id="usersEditModal">
+  <div class="modal__content">
+    <p class="h1 modal__title">Edit user</p>
+    {{{userSearchInput}}}
+    <form id="UsersEditCheckList" class="modal__form">
+    </form>
+    <div id="usersList"></div>
+    {{{editUsersBtn}}}
+    {{{closeChatEditModalBtn}}}
   </div>
 </div>

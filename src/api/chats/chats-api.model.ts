@@ -28,7 +28,7 @@ export interface DeleteChatBody {
   chatId: string;
 }
 
-export interface AddUsersBody {
+export interface ChatUpdateUsersBody {
   users: number[];
   chatId: number;
 }

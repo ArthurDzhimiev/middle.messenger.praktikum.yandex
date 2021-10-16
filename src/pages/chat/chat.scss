@@ -5,7 +5,10 @@
   height: 100%;
   overflow: auto;
 }
-
+.chat__body-btns{
+  display: flex;
+  gap: 16px;
+}
 .chat__body-head {
   height: 55px;
   padding: 0 16px;

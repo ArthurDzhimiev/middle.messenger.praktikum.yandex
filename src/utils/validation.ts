@@ -205,13 +205,13 @@ export function collectFormData(formSelector: string): any {
   return formData;
 }
 
-export function collectCheckList(formSelector: string): any {
+export function collectCheckList(formSelector: string, findChecked = true): any {
   const form = document.querySelector(formSelector);
   const selectedList: string[] = [];
   if (form) {
     const checkList = form.querySelectorAll("input");
     checkList.forEach((input) => {
-      if (!!input.checked) {
+      if (findChecked ? input.checked : !input.checked) {
         selectedList.push(input.id);
       }
     });

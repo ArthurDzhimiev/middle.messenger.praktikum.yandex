@@ -1,9 +1,5 @@
 import { HTTPTransport } from "../../utils/fetch";
-import {
-  AddUsersBody,
-  CreateChatBody,
-  DeleteChatBody,
-} from "./chats-api.model";
+import { ChatUpdateUsersBody, CreateChatBody } from "./chats-api.model";
 
 const APIInstance = new HTTPTransport();
 
@@ -21,8 +17,8 @@ export default class ChatsApiService {
     return APIInstance.post("chats", { data });
   }
 
-  deleteChat(data: DeleteChatBody): Promise<XMLHttpRequest> {
-    return APIInstance.post("chats", { data });
+  deleteChat(chatId: number): Promise<XMLHttpRequest> {
+    return APIInstance.delete("chats", { data: { chatId } });
   }
 
   getChats(): Promise<XMLHttpRequest> {
@@ -37,7 +33,10 @@ export default class ChatsApiService {
     return APIInstance.post(`chats/token/${id}`, { data: { id } });
   }
 
-  addUsersToChat(data: AddUsersBody): Promise<XMLHttpRequest> {
+  addUsersToChat(data: ChatUpdateUsersBody): Promise<XMLHttpRequest> {
     return APIInstance.put("chats/users", { data });
+  }
+  deleteUsersFromChat(data: ChatUpdateUsersBody): Promise<XMLHttpRequest> {
+    return APIInstance.delete("chats/users", { data });
   }
 }
