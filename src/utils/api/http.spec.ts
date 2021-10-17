@@ -8,19 +8,19 @@ chai.use(sinonChai);
 const dom = new JSDOM('<!DOCTYPE html><div id="app"></div></div>');
 (global as any).window = dom.window;
 
-describe("HTTP", () => {
+describe("HTTP requests test", () => {
   const testRequestBody = {
     data: {
       id: 1,
     },
   };
-  it("GET", () => {
+  it("GET method work correct", () => {
     const http = new HTTPTransport();
     const requestSpy = sinon.spy(http, "request");
     http.request("/test", METHODS.GET, {});
     chai.expect(requestSpy).to.have.been.calledWith("/test", METHODS.GET, {});
   });
-  it("PUT", () => {
+  it("PUT method work correct", () => {
     const http = new HTTPTransport();
     const requestSpy = sinon.spy(http, "request");
     http.request("/test", METHODS.PUT, testRequestBody);
@@ -28,7 +28,7 @@ describe("HTTP", () => {
       .expect(requestSpy)
       .to.have.been.calledWith("/test", METHODS.PUT, testRequestBody);
   });
-  it("POST", () => {
+  it("POST method work correct", () => {
     const http = new HTTPTransport();
     const requestSpy = sinon.spy(http, "request");
     http.request("/test", METHODS.POST, testRequestBody);
@@ -36,7 +36,7 @@ describe("HTTP", () => {
       .expect(requestSpy)
       .to.have.been.calledWith("/test", METHODS.POST, testRequestBody);
   });
-  it("DELETE", () => {
+  it("DELETE method work correct", () => {
     const http = new HTTPTransport();
     const requestSpy = sinon.spy(http, "request");
     http.request("/test", METHODS.DELETE, testRequestBody);
