@@ -1,7 +1,3 @@
-## Project info
-Навигация в проекте реализована через замену hbs шаблонов. 
-
-Для проверки основных страниц, можно переходить нажатием кнопок/ссылок. Для проверки страниц 404/500 добавил кнопки в профиле пользователя.       
 ## Commands
 #### 1. Run `npm run dev`  for a dev server. Navigate to `http://localhost:1234`. The app will automatically reload if you change any of the source files.
 #### 2. Run `npm run build` to build the project. The build will be stored in the dist/ directory.
