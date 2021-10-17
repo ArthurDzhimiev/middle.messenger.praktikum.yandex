@@ -107,8 +107,6 @@ export default class Block<P = any> {
   _makePropsProxy(props: object) {
     return new Proxy(props, {
       get(target: Record<string, any>, prop: string) {
-        console.log(startWith(prop, "_"));
-
         if (prop && startWith(prop, "_")){
           throw new Error("нет доступа");
         } else {
