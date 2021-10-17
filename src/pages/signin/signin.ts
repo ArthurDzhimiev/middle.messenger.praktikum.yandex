@@ -1,16 +1,16 @@
 import "./signin.scss";
 import template from "./signin.hbs";
-import Block from "../../utils/block";
+import Block from "../../utils/block/block";
 import { Button } from "../../components/button/button";
-import compile from "../../utils/compile";
+import compile from "../../utils/block/compile";
 import { LinkButton } from "../../components/link-button/link-button";
 import { Input } from "../../components/input/input";
 import {
   collectFormData,
   InputsProps,
   validateForm,
-} from "../../utils/validation";
-import { Router } from "../../utils/router";
+} from "../../utils/validation/validation";
+import { Router } from "../../utils/router/router";
 import {AuthController} from "../../controllers/auth.controller";
 
 const authController = new AuthController()

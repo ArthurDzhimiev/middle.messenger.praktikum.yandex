@@ -1,9 +1,9 @@
-import { Router } from "../utils/router";
+import { Router } from "../utils/router/router";
 import { deleteUser, setUser } from "../store/user";
 import { store } from "../store/index";
 import { SignupData } from "../api/auth/auth-api.model";
 import AuthApiService from "../api/auth/auth-api.service";
-import {settFormErr} from "../utils/validation";
+import {settFormErr} from "../utils/validation/validation";
 
 const authService = new AuthApiService();
 const router = new Router("#app");

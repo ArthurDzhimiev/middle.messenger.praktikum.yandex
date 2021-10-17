@@ -1,4 +1,4 @@
-import EventBus from "./event-bus";
+import EventBus from "../block/event-bus";
 
 export interface Action {
   type: string;

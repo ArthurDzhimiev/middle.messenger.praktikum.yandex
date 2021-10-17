@@ -1,16 +1,15 @@
 import "../profile.scss";
-import Block from "../../../utils/block";
-import compile from "../../../utils/compile";
+import Block from "../../../utils/block/block";
+import compile from "../../../utils/block/compile";
 import template from "./profile-info.hbs";
 import { LinkButton } from "../../../components/link-button/link-button";
-import { Router } from "../../../utils/router";
+import { Router } from "../../../utils/router/router";
 import { store } from "../../../store/index";
 import { AuthController } from "../../../controllers/auth.controller";
-import {UserController} from "../../../controllers/user.controller";
+import { UserController } from "../../../controllers/user.controller";
 
 const authController = new AuthController();
 const userController = new UserController();
-
 
 export class ProfileInfoPage extends Block {
   router = new Router("#app");
@@ -32,15 +31,12 @@ export class ProfileInfoPage extends Block {
   }
 
   loadFile(event: Event) {
-    const target =  event.target as HTMLInputElement
-    if(target.files){
+    const target = event.target as HTMLInputElement;
+    if (target.files) {
       const formData = new FormData();
-      formData.append('avatar', target.files[0])
-      userController.updateUserAvatar(
-        formData
-      )
+      formData.append("avatar", target.files[0]);
+      userController.updateUserAvatar(formData);
     }
-
   }
 
   render(): DocumentFragment {
@@ -48,7 +44,11 @@ export class ProfileInfoPage extends Block {
       const avatarInput = document.getElementById("avatar");
       avatarInput?.addEventListener("change", this.loadFile);
     }, 100);
-
+    const profileAvatarBtn = `
+    <label class="profile__avatar-btn"
+        style="background-image: url('${this.userInfo?.avatar ? 'https://ya-praktikum.tech/api/v2/resources' + this.userInfo?.avatar : ""}')"
+        for="avatar">
+    </label>`;
     const updateInfoBtn = new LinkButton({
       text: "Update user info",
       events: {
@@ -107,7 +107,8 @@ export class ProfileInfoPage extends Block {
       notFoundErrBtn,
       serverErrBtn,
       logOutBtn,
-      getBackBtn
+      getBackBtn,
+      profileAvatarBtn
     });
   }
 }

@@ -8,7 +8,6 @@ import {
 import {
   deleteChat,
   deleteChatUsers,
-  setChat,
   setChatUsers,
 } from "../store/chat";
 import { ChatMessage } from "../components/chat-message/chat-message";
@@ -39,8 +38,7 @@ export class ChatsController {
   async createChat(data: CreateChatBody) {
     try {
       const chat: any = await chatsService.createChat(data);
-      const chats = await this.getChats();
-      store.dispatch(setChat(chats[0]));
+      await this.getChats();
       return chat;
     } catch (e) {
       store.dispatch(deleteChats());
@@ -87,7 +85,6 @@ export class ChatsController {
   async getChatToken(id: number) {
     try {
       const token: any = await chatsService.getChatToken(id);
-      // store.dispatchtch(setChatUsers(JSON.parse(users)));
       return JSON.parse(token).token;
     } catch (e) {}
   }

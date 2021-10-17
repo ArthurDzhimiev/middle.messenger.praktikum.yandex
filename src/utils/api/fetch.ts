@@ -1,4 +1,4 @@
-enum METHODS {
+export enum METHODS {
   GET = "GET",
   PUT = "PUT",
   POST = "POST",
@@ -38,7 +38,7 @@ export class HTTPTransport {
   ): Promise<XMLHttpRequest> {
     const data = options.data;
     const headers = options.headers || {};
-    if (!headers["content-type"] && !(data instanceof FormData)) {
+    if (!headers["content-type"] && !(data && data instanceof window.FormData)) {
       headers["content-type"] = "application/json";
     }
     return new Promise((resolve, reject) => {
@@ -66,7 +66,7 @@ export class HTTPTransport {
       if (method === METHODS.GET) {
         xhr.send();
       } else {
-        if (data instanceof FormData) {
+        if (data instanceof window.FormData) {
           xhr.send(data);
         } else {
           xhr.send(JSON.stringify(data));
