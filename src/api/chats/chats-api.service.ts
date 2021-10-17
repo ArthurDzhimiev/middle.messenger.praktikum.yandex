@@ -1,4 +1,4 @@
-import { HTTPTransport } from "../../utils/fetch";
+import { HTTPTransport } from "../../utils/api/fetch";
 import { ChatUpdateUsersBody, CreateChatBody } from "./chats-api.model";
 
 const APIInstance = new HTTPTransport();

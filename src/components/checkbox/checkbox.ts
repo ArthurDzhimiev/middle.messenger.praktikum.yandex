@@ -1,7 +1,7 @@
 import template from "./checkbox.hbs";
 import "./checkbox.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 
 export interface CheckboxProps {
   name: string;

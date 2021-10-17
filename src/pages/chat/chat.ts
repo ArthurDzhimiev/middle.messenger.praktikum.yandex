@@ -1,10 +1,13 @@
 import "./chat.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 import template from "./chat.hbs";
 import { Input } from "../../components/input/input";
-import { collectCheckList, InputsProps } from "../../utils/validation";
-import { Router } from "../../utils/router";
+import {
+  collectCheckList,
+  InputsProps,
+} from "../../utils/validation/validation";
+import { Router } from "../../utils/router/router";
 import { store } from "../../store/index";
 import { Chat } from "../../api/chats/chats-api.model";
 import { ChatsController } from "../../controllers/chats.controller";

@@ -1,4 +1,4 @@
-import { HTTPTransport } from "../../utils/fetch";
+import { HTTPTransport } from "../../utils/api/fetch";
 import { SignInData, SignupData } from "./auth-api.model";
 
 const APIInstance = new HTTPTransport();

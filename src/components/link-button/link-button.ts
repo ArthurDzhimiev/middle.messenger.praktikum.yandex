@@ -1,7 +1,7 @@
 import template from "./link-button.hbs";
 import "./link-button.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 
 export class LinkButton extends Block {
   constructor(props: {

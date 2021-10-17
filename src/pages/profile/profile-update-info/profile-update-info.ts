@@ -1,16 +1,16 @@
 import "../profile.scss";
-import Block from "../../../utils/block";
-import compile from "../../../utils/compile";
+import Block from "../../../utils/block/block";
+import compile from "../../../utils/block/compile";
 import template from "./profile-update-info.hbs";
 import { Input } from "../../../components/input/input";
 import {
   collectFormData,
   InputsProps,
   validateForm,
-} from "../../../utils/validation";
+} from "../../../utils/validation/validation";
 import { Button } from "../../../components/button/button";
 import { LinkButton } from "../../../components/link-button/link-button";
-import { Router } from "../../../utils/router";
+import { Router } from "../../../utils/router/router";
 import { store } from "../../../store/index";
 import { User } from "../../../api/user/user-api.model";
 import {UserController} from "../../../controllers/user.controller";

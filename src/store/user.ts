@@ -1,4 +1,4 @@
-import {Action} from "../utils/store";
+import {Action} from "../utils/store/store";
 import {User} from "../api/user/user-api.model";
 
 const SET_USER = 'user/SET';

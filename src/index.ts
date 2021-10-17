@@ -1,4 +1,4 @@
-import { Router } from "./utils/router";
+import { Router } from "./utils/router/router";
 import { SignInPage } from "./pages/signin/signin";
 import { SignUpPage } from "./pages/signup/signup";
 import { ProfileInfoPage } from "./pages/profile/profile-info/profile-info";

@@ -1,4 +1,4 @@
-import { InputProps } from "../components/input/input";
+import { InputProps } from "../../components/input/input";
 
 export const InputsRegex: Record<string, RegExp> = {
   name: /^[А-ЯA-Z][А-ЯA-Zа-яёa-z-]+$/,
@@ -192,7 +192,9 @@ export function validateForm(formSelector: string): boolean {
   }
   return !errorsCount;
 }
-
+export function startWith(string: string, searchString: string) {
+  return string.indexOf(searchString, 0) === 0;
+}
 export function collectFormData(formSelector: string): any {
   const form = document.querySelector(formSelector);
   const formData: Record<string, string> = {};
