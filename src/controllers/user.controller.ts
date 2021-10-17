@@ -5,8 +5,8 @@ import {
 } from "../api/user/user-api.model";
 import { AuthController } from "./auth.controller";
 import UserApiService from "../api/user/user-api.service";
-import { settFormErr } from "../utils/validation";
-import { Router } from "../utils/router";
+import { settFormErr } from "../utils/validation/validation";
+import { Router } from "../utils/router/router";
 
 const userService = new UserApiService();
 const authController = new AuthController();

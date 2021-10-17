@@ -1,7 +1,7 @@
 import template from "./button.hbs";
 import "./button.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 
 export interface ButtonProps {
   text: string;

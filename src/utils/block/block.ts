@@ -1,6 +1,7 @@
 import EventBus from "./event-bus";
 // @ts-ignore
 import { nanoid } from "nanoid";
+import {startWith} from "../validation/validation";
 
 enum EVENTS {
   INIT = "init",
@@ -96,7 +97,7 @@ export default class Block<P = any> {
   }
 
   render(): DocumentFragment {
-    return new DocumentFragment();
+    return new window.DocumentFragment();
   }
 
   getContent() {
@@ -106,7 +107,9 @@ export default class Block<P = any> {
   _makePropsProxy(props: object) {
     return new Proxy(props, {
       get(target: Record<string, any>, prop: string) {
-        if (prop.startsWith("_")) {
+        console.log(startWith(prop, "_"));
+
+        if (prop && startWith(prop, "_")){
           throw new Error("нет доступа");
         } else {
           let value = target[prop];
@@ -114,7 +117,7 @@ export default class Block<P = any> {
         }
       },
       set(target: Record<string, any>, prop: string, val) {
-        if (prop.startsWith("_")) {
+        if (prop && startWith(prop, "_")) {
           throw new Error("нет доступа");
         } else {
           target[prop] = val;

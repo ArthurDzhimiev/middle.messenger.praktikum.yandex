@@ -1,18 +1,22 @@
 import "./chats.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 import template from "./chats.hbs";
-import {LinkButton} from "../../components/link-button/link-button";
-import {ChatCard} from "../../components/chat-card/chat-card";
-import {Input} from "../../components/input/input";
-import {collectFormData, InputsProps, validateForm,} from "../../utils/validation";
-import {Router} from "../../utils/router";
-import {store} from "../../store/index";
-import {Chat} from "../../api/chats/chats-api.model";
-import {ChatsController} from "../../controllers/chats.controller";
-import {Button} from "../../components/button/button";
-import {ChatPage} from "../chat/chat";
-import {setChat} from "../../store/chat";
+import { LinkButton } from "../../components/link-button/link-button";
+import { ChatCard } from "../../components/chat-card/chat-card";
+import { Input } from "../../components/input/input";
+import {
+  collectFormData,
+  InputsProps,
+  validateForm,
+} from "../../utils/validation/validation";
+import { Router } from "../../utils/router/router";
+import { store } from "../../store/index";
+import { Chat } from "../../api/chats/chats-api.model";
+import { ChatsController } from "../../controllers/chats.controller";
+import { Button } from "../../components/button/button";
+import { ChatPage } from "../chat/chat";
+import { setChat } from "../../store/chat";
 
 const chatsController = new ChatsController();
 
@@ -27,10 +31,12 @@ export class ChatsPage extends Block {
   getChatCards(chats: Chat[]) {
     if (chats) {
       return chats.map((chat) => {
-        const time = chat?.last_message?.time ? new Date(chat?.last_message?.time).toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit'
-        }) : ''
+        const time = chat?.last_message?.time
+          ? new Date(chat?.last_message?.time).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : "";
         return new ChatCard({
           status: "online",
           userName: chat?.title,
@@ -63,7 +69,6 @@ export class ChatsPage extends Block {
       const chats = store.getState().chats.chats;
       if (chats && (!this.chats || this.chats.length !== chats.length)) {
         this.chats = chats;
-        this.openChat(chats[0]);
         this.setProps({
           ...this.props,
           chats: this.getChatCards(this.chats),
@@ -122,7 +127,7 @@ export class ChatsPage extends Block {
     });
 
     const chatTitleInput = new Input({
-      ...InputsProps.chatTitle
+      ...InputsProps.chatTitle,
     });
 
     return compile(template, {

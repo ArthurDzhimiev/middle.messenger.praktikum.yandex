@@ -1,4 +1,4 @@
-import {Action} from "../utils/store";
+import {Action} from "../utils/store/store";
 import {Chat} from "../api/chats/chats-api.model";
 
 const SET_CHATS = 'chats/SET';

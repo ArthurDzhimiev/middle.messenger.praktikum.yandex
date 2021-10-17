@@ -1,14 +1,11 @@
 <div class="profile">
-  <h1 class="h1 profile__title">Profile</h1>
+  <h1 class="h1">Profile</h1>
   <div class="profile__back-btn">
     {{{getBackBtn}}}
   </div>
   <input class="profile__avatar-input" type="file" id="avatar" name="avatar"/>
   <div class="profile__avatar">
-    <label class="profile__avatar-btn"
-           style="background-image: url('https://ya-praktikum.tech/api/v2/resources{{userInfo.avatar}}')"
-           for="avatar">
-    </label>
+    {{{profileAvatarBtn}}}
     <div class="profile__avatar-plus"></div>
   </div>
   <div class="profile__info-item">

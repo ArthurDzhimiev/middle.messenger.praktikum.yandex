@@ -1,9 +1,9 @@
 import "../errors.scss";
-import Block from "../../../utils/block";
-import compile from "../../../utils/compile";
+import Block from "../../../utils/block/block";
+import compile from "../../../utils/block/compile";
 import template from "./404.hbs";
 import { Button } from "../../../components/button/button";
-import {Router} from "../../../utils/router";
+import {Router} from "../../../utils/router/router";
 
 export class NotFoundPage extends Block {
   router = new Router("#app");

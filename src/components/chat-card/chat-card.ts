@@ -1,7 +1,7 @@
 import "./chat-card.scss";
 import template from "./chat-card.hbs";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 
 export class ChatCard extends Block {
   constructor(props: {
