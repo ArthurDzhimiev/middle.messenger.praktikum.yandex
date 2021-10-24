@@ -1,6 +1,7 @@
 import EventBus from "./event-bus";
 // @ts-ignore
 import { nanoid } from "nanoid";
+import {startWith} from "../validation/validation";
 
 enum EVENTS {
   INIT = "init",
@@ -9,7 +10,7 @@ enum EVENTS {
   FLOW_RENDER = "flow:render",
 }
 
-export default class Block {
+export default class Block<P = any> {
   _element: HTMLElement;
   _meta: {
     tagName: string;
@@ -54,12 +55,13 @@ export default class Block {
     this.eventBus.emit(EVENTS.FLOW_CDM);
   }
 
-  _componentDidMount() {
-    this.componentDidMount();
+  _componentDidMount(props: P) {
+    this.componentDidMount(props);
     this.eventBus.emit(EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount() {}
+  // @ts-ignore
+  componentDidMount(props: P) {}
 
   _componentDidUpdate(oldProps: unknown, newProps: unknown) {
     this.componentDidUpdate(oldProps, newProps);
@@ -95,7 +97,7 @@ export default class Block {
   }
 
   render(): DocumentFragment {
-    return new DocumentFragment();
+    return new window.DocumentFragment();
   }
 
   getContent() {
@@ -105,7 +107,7 @@ export default class Block {
   _makePropsProxy(props: object) {
     return new Proxy(props, {
       get(target: Record<string, any>, prop: string) {
-        if (prop.startsWith("_")) {
+        if (prop && startWith(prop, "_")){
           throw new Error("нет доступа");
         } else {
           let value = target[prop];
@@ -113,7 +115,7 @@ export default class Block {
         }
       },
       set(target: Record<string, any>, prop: string, val) {
-        if (prop.startsWith("_")) {
+        if (prop && startWith(prop, "_")) {
           throw new Error("нет доступа");
         } else {
           target[prop] = val;
@@ -152,4 +154,10 @@ export default class Block {
       this._element.firstChild!.addEventListener(event, listener);
     });
   }
+
+  hide() {
+
+  }
+
+  show() {}
 }

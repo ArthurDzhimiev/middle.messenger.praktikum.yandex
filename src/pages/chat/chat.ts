@@ -1,90 +1,208 @@
 import "./chat.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 import template from "./chat.hbs";
-import { LinkButton } from "../../components/link-button/link-button";
-import { render } from "../../utils/renderTemplates";
-import { ProfileInfoPage } from "../profile/profile-info/profile-info";
-import { ChatCard } from "../../components/chat-card/chat-card";
 import { Input } from "../../components/input/input";
-import { InputsProps } from "../../utils/validation";
-import { ChatMessage } from "../../components/chat-message/chat-message";
+import {
+  collectCheckList,
+  InputsProps,
+} from "../../utils/validation/validation";
+import { Router } from "../../utils/router/router";
+import { store } from "../../store/index";
+import { Chat } from "../../api/chats/chats-api.model";
+import { ChatsController } from "../../controllers/chats.controller";
+import { LinkButton } from "../../components/link-button/link-button";
+import { UserController } from "../../controllers/user.controller";
+import { Checkbox } from "../../components/checkbox/checkbox";
+import { User } from "../../api/user/user-api.model";
+import { Button } from "../../components/button/button";
 
-const messages = [
-  {
-    ownMessage: true,
-    text: "But don’t worry cause we are all learning here But don’t worry cause we are all learning here But don’t worry cause we are all learning here",
-    time: "16:46",
-  },
-  {
-    ownMessage: false,
-    text: "But don’t worry cause we are all learning here",
-    time: "16:46",
-  },
-  {
-    ownMessage: true,
-    text: "But don’t worry cause we are all learning here",
-    time: "16:46",
-  },
-  {
-    ownMessage: false,
-    text: "But don’t worry cause we are all learning here",
-    time: "16:46",
-  },
-];
+const chatsController = new ChatsController();
+const userController = new UserController();
 
 export class ChatPage extends Block {
+  router = new Router("#app");
+  chat: Chat;
+
   constructor() {
     super("div");
   }
 
+  async addUsers() {
+    const users = collectCheckList("#UsersCheckList");
+    await chatsController.addUsersToChat({
+      chatId: this.chat.id,
+      users,
+    });
+    await chatsController.getChatUsers(this.chat.id);
+    this.closeModal("userModal");
+    const usersListWrapper = document.getElementById("UsersCheckList");
+    if (usersListWrapper) {
+      usersListWrapper.innerHTML = "";
+    }
+  }
+
+  async deleteUsers() {
+    const users = collectCheckList("#UsersEditCheckList", false);
+    await chatsController.deleteUsersFromChat({
+      chatId: this.chat.id,
+      users,
+    });
+    this.closeModal("usersEditModal");
+  }
+
+  async searchUser(login: string) {
+    const users: any = await userController.searchUser({ login });
+    const usersListWrapper = document.getElementById("UsersCheckList");
+    if (usersListWrapper) {
+      usersListWrapper.innerHTML = "";
+      this.getUsersCheckList(users).forEach((user) => {
+        usersListWrapper.appendChild(user.getContent());
+      });
+    }
+  }
+
+  getUsersCheckList(users: User[], checked?: string) {
+    if (users) {
+      return users.map((user) => {
+        return new Checkbox({
+          name: "user",
+          text: user.login,
+          id: user.id,
+          value: user.id,
+          checked,
+        });
+      });
+    }
+    return [];
+  }
+
+  openUsersEditModal() {
+    const users = store.getState().chat.users;
+    this.openModal("usersEditModal");
+    const usersListWrapper = document.getElementById("UsersEditCheckList");
+    if (usersListWrapper) {
+      usersListWrapper.innerHTML = "";
+      this.getUsersCheckList(users, "checked").forEach((user) => {
+        usersListWrapper.appendChild(user.getContent());
+      });
+    }
+  }
+
+  async deleteChat() {
+    await chatsController.deleteChat(this.chat.id);
+    await chatsController.getChats();
+    this.setProps({
+      ...this.props,
+      chat: null,
+    });
+  }
+
+  sendMessage(message: string) {
+    chatsController.sendMessage(message);
+  }
+
+  openModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    modal?.classList.add("modal--open");
+  }
+
+  closeModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    modal?.classList.remove("modal--open");
+  }
+
+  componentDidMount() {
+    store.on("changed", () => {
+      const chat = store.getState().chat.chat;
+      if (chat && this.chat?.id !== chat?.id) {
+        this.chat = chat;
+        this.setProps({
+          ...this.props,
+          chat: this.chat,
+        });
+      }
+    });
+  }
+
   render(): DocumentFragment {
-    const profileLink = new LinkButton({
-      text: "Profile",
+    const inputMessage = new Input({
+      ...InputsProps.message,
       events: {
-        click: () => {
-          render("#app", new ProfileInfoPage());
+        keyup: (event) => {
+          if (event.keyCode === 13 && event.target.value) {
+            this.sendMessage(event.target.value);
+            event.target.value = "";
+          }
         },
       },
     });
-    const chatCard = new ChatCard({
-      status: "online",
-      userName: "Artur dzhimiev",
-      message: "How is it going?",
-      time: "13:00",
-      size: "m",
-    });
-    const chatHeaderCard = new ChatCard({
-      status: "online",
-      userName: "Artur dzhimiev",
-      message: "How is it going?",
-      time: "13:00",
-      size: "s",
-    });
-    const chatMessages = messages.map((message) => {
-      return new ChatMessage({
-        text: message.text,
-        time: message.time,
-        type: message.ownMessage ? "blue" : "white",
-      })._element.innerHTML;
-    });
-    const inputSearch = new Input({
-      ...InputsProps.search,
+    const usersModalBtn = new LinkButton({
+      text: "Add user",
       events: {
-        blur: () => {
-          console.log("blur");
+        click: () => this.openModal("userModal"),
+      },
+    });
+    const editUsersModalBtn = new LinkButton({
+      text: "Edit users",
+      events: {
+        click: () => this.openUsersEditModal(),
+      },
+    });
+    const deleteChatBtn = new LinkButton({
+      text: "Delete chat",
+      events: {
+        click: () => this.deleteChat(),
+      },
+    });
+    const closeChatModalBtn = new LinkButton({
+      text: "Close",
+      events: {
+        click: () => this.closeModal("userModal"),
+      },
+    });
+    const closeChatEditModalBtn = new LinkButton({
+      text: "Close",
+      events: {
+        click: () => this.closeModal("usersEditModal"),
+      },
+    });
+    const userSearchInput = new Input({
+      ...InputsProps.chatTitle,
+      events: {
+        keyup: (event) => {
+          this.searchUser(event.target.value);
         },
       },
     });
-    const inputMessage = new Input(InputsProps.message);
+    const addUsersBtn = new Button({
+      text: "Add users",
+      type: "submit",
+      events: {
+        click: () => this.addUsers(),
+      },
+    });
+    const editUsersBtn = new Button({
+      text: "Edit users",
+      type: "submit",
+      events: {
+        click: () => this.deleteUsers(),
+      },
+    });
 
     return compile(template, {
-      profileLink,
-      chatCard,
-      chatHeaderCard,
-      inputSearch,
-      inputMessage,
-      chatMessages,
+      inputMessage: this.props.chat ? inputMessage : null,
+      chatStatus: !this.props.chat ? "closed" : "open",
+      chat: this.props.chat,
+      closeChatModalBtn: closeChatModalBtn,
+      usersCheckList: this.props.usersCheckList,
+      usersModalBtn,
+      editUsersModalBtn,
+      deleteChatBtn,
+      addUsersBtn,
+      editUsersBtn,
+      userSearchInput,
+      closeChatEditModalBtn,
     });
   }
 }

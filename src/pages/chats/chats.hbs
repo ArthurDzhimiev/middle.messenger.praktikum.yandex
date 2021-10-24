@@ -1,0 +1,33 @@
+<div class="chat">
+  <div class="chat__list">
+    <div class="chat__list-head">
+      {{{profileLink}}}
+<!--      <div class="chat__list-search">-->
+<!--        {{{inputSearch}}}-->
+<!--      </div>-->
+    </div>
+    <div class="chat__list-cards" id="ChatsList">
+      {{#each chats}}
+        {{{this}}}
+      {{/each}}
+    </div>
+
+    <div class="chat__list-cards-btn">
+      {{{addChatModalBtn}}}
+    </div>
+  </div>
+  <div class="chat__body">
+    {{{chat}}}
+  </div>
+</div>
+
+<div class="modal" id="chatModal">
+  <div class="modal__content">
+    <p class="h1 modal__title">Add new chat</p>
+    <form id="CreateChatForm" class="modal__form">
+      {{{chatTitleInput}}}
+    </form>
+    {{{addChatBtn}}}
+    {{{closeChatBtn}}}
+  </div>
+</div>

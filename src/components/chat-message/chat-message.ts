@@ -1,7 +1,7 @@
 import template from "./chat-message.hbs";
 import "./chat-message.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 
 export class ChatMessage extends Block {
   constructor(props: {

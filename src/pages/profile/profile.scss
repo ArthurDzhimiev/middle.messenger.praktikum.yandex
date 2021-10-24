@@ -14,6 +14,11 @@
   margin-bottom: 56px;
 }
 
+.profile__back-btn {
+  margin-bottom: 56px;
+  margin-top: 16px;
+}
+
 .profile__form-wrapper {
   display: flex;
   width: 100%;
@@ -66,6 +71,7 @@
   align-items: flex-end;
   width: 100%;
 }
+
 .profile__avatar {
   position: relative;
   width: 100px;
@@ -78,6 +84,7 @@
   background-position: center;
   background-image: url("../../../static/images/icons/profile.svg");
 }
+
 .profile__avatar-btn {
   position: absolute;
   width: 100px;
@@ -85,11 +92,16 @@
   top: 0;
   left: 0;
   cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
 }
+
 .profile__avatar-input {
   visibility: hidden;
   height: 0;
 }
+
 .profile__avatar-plus {
   position: absolute;
   bottom: 3px;

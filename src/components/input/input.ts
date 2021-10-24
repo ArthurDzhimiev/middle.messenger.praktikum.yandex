@@ -1,7 +1,7 @@
 import template from "./input.hbs";
 import "./input.scss";
-import Block from "../../utils/block";
-import compile from "../../utils/compile";
+import Block from "../../utils/block/block";
+import compile from "../../utils/block/compile";
 
 export interface InputProps {
   type: string;
@@ -9,10 +9,12 @@ export interface InputProps {
   placeholder: string;
   errorText?: string;
   validation?: string;
+  value?: string;
   events?: {
-    blur: (e: any) => void;
+    blur?: (e: any) => void;
     focus?: (e: any) => void;
     keypress?: (e: any) => void;
+    keyup?: (e: any) => void;
   };
 }
 

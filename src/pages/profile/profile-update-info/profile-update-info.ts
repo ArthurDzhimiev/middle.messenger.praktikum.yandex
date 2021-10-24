@@ -1,31 +1,46 @@
 import "../profile.scss";
-import Block from "../../../utils/block";
-import compile from "../../../utils/compile";
+import Block from "../../../utils/block/block";
+import compile from "../../../utils/block/compile";
 import template from "./profile-update-info.hbs";
 import { Input } from "../../../components/input/input";
 import {
   collectFormData,
   InputsProps,
   validateForm,
-} from "../../../utils/validation";
+} from "../../../utils/validation/validation";
 import { Button } from "../../../components/button/button";
 import { LinkButton } from "../../../components/link-button/link-button";
-import { ProfileInfoPage } from "../profile-info/profile-info";
-import { render } from "../../../utils/renderTemplates";
+import { Router } from "../../../utils/router/router";
+import { store } from "../../../store/index";
+import { User } from "../../../api/user/user-api.model";
+import {UserController} from "../../../controllers/user.controller";
+
+const userController = new UserController();
 
 export class ProfileUpdateInfoPage extends Block {
+  router = new Router("#app");
+  userInfo: User;
+
   constructor() {
     super("div");
+  }
+
+  componentDidMount() {
+    this.userInfo = store.getState().user.profile;
+    store.on("changed", () => {
+      this.userInfo = store.getState().user.profile;
+      this.setProps({
+        ...this.props,
+        userInfo: this.userInfo,
+      });
+    });
   }
 
   updateInfo() {
     const isValidForm: boolean = validateForm("#UserInfo");
     if (isValidForm) {
-      console.log(collectFormData("#UserInfo"));
-      render("#app", new ProfileInfoPage());
-      return true;
+      userController.updateUserInfo(collectFormData("#UserInfo"));
     }
-    throw new Error("Form is invalid");
   }
 
   render(): DocumentFragment {
@@ -40,19 +55,37 @@ export class ProfileUpdateInfoPage extends Block {
       text: "Cancel",
       events: {
         click: () => {
-          render("#app", new ProfileInfoPage());
+          this.router.go("/profile");
         },
       },
     });
     return compile(template, {
       cancelBtn,
       updateInfoBtn,
-      firstName: new Input(InputsProps.firstName),
-      secondName: new Input(InputsProps.secondName),
-      displayName: new Input(InputsProps.displayName),
-      login: new Input(InputsProps.login),
-      email: new Input(InputsProps.email),
-      phone: new Input(InputsProps.phone),
+      firstName: new Input({
+        ...InputsProps.firstName,
+        value: this.userInfo?.first_name,
+      }),
+      secondName: new Input({
+        ...InputsProps.secondName,
+        value: this.userInfo?.second_name,
+      }),
+      displayName: new Input({
+        ...InputsProps.displayName,
+        value: this.userInfo?.display_name,
+      }),
+      login: new Input({
+        ...InputsProps.login,
+        value: this.userInfo?.login,
+      }),
+      email: new Input({
+        ...InputsProps.email,
+        value: this.userInfo?.email,
+      }),
+      phone: new Input({
+        ...InputsProps.phone,
+        value: this.userInfo?.phone,
+      }),
     });
   }
 }

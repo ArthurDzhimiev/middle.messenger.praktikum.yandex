@@ -1,19 +1,22 @@
 import "../profile.scss";
-import Block from "../../../utils/block";
-import compile from "../../../utils/compile";
+import Block from "../../../utils/block/block";
+import compile from "../../../utils/block/compile";
 import template from "./profile-update-password.hbs";
 import {
   collectFormData,
   InputsProps,
   validateForm,
-} from "../../../utils/validation";
+} from "../../../utils/validation/validation";
 import { Input } from "../../../components/input/input";
 import { Button } from "../../../components/button/button";
 import { LinkButton } from "../../../components/link-button/link-button";
-import { render } from "../../../utils/renderTemplates";
-import { ProfileInfoPage } from "../profile-info/profile-info";
+import {Router} from "../../../utils/router/router";
+import {UserController} from "../../../controllers/user.controller";
+const userController = new UserController();
 
 export class ProfileUpdatePasswordPage extends Block {
+  router = new Router("#app");
+
   constructor() {
     super("div");
   }
@@ -21,11 +24,8 @@ export class ProfileUpdatePasswordPage extends Block {
   updatePassword() {
     const isValidForm: boolean = validateForm("#UpdatePassword");
     if (isValidForm) {
-      console.log(collectFormData("#UpdatePassword"));
-      render("#app", new ProfileInfoPage());
-      return true;
+      userController.updateUserPassword(collectFormData("#UpdatePassword"));
     }
-    throw new Error("Form is invalid");
   }
 
   render(): DocumentFragment {
@@ -40,7 +40,7 @@ export class ProfileUpdatePasswordPage extends Block {
       text: "Cancel",
       events: {
         click: () => {
-          render("#app", new ProfileInfoPage());
+          this.router.go("/profile");
         },
       },
     });
@@ -50,12 +50,14 @@ export class ProfileUpdatePasswordPage extends Block {
       oldPassword: new Input({
         ...InputsProps.password,
         placeholder: "Old password",
-        name: "old_password",
+        errorText: 'Old password is required',
+        validation: 'required',
+        name: "oldPassword",
       }),
       newPassword: new Input({
         ...InputsProps.password,
         placeholder: "New password",
-        name: "new_password",
+        name: "newPassword",
       }),
     });
   }

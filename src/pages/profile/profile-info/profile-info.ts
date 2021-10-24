@@ -1,26 +1,59 @@
 import "../profile.scss";
-import Block from "../../../utils/block";
-import compile from "../../../utils/compile";
+import Block from "../../../utils/block/block";
+import compile from "../../../utils/block/compile";
 import template from "./profile-info.hbs";
 import { LinkButton } from "../../../components/link-button/link-button";
-import { render } from "../../../utils/renderTemplates";
-import { ProfileUpdatePasswordPage } from "../profile-update-password/profile-update-password";
-import { ProfileUpdateInfoPage } from "../profile-update-info/profile-update-info";
-import { NotFoundPage } from "../../errors/404/404";
-import { ServerErrorPage } from "../../errors/505/505";
-import { SignInPage } from "../../signin/signin";
+import { Router } from "../../../utils/router/router";
+import { store } from "../../../store/index";
+import { AuthController } from "../../../controllers/auth.controller";
+import { UserController } from "../../../controllers/user.controller";
+
+const authController = new AuthController();
+const userController = new UserController();
 
 export class ProfileInfoPage extends Block {
+  router = new Router("#app");
+  userInfo: any | null = null;
+
   constructor() {
     super("div");
   }
 
+  componentDidMount() {
+    this.userInfo = store.getState().user.profile;
+    store.on("changed", () => {
+      this.userInfo = store.getState().user.profile;
+      this.setProps({
+        ...this.props,
+        userInfo: this.userInfo,
+      });
+    });
+  }
+
+  loadFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files) {
+      const formData = new FormData();
+      formData.append("avatar", target.files[0]);
+      userController.updateUserAvatar(formData);
+    }
+  }
+
   render(): DocumentFragment {
+    setTimeout(() => {
+      const avatarInput = document.getElementById("avatar");
+      avatarInput?.addEventListener("change", this.loadFile);
+    }, 100);
+    const profileAvatarBtn = `
+    <label class="profile__avatar-btn"
+        style="background-image: url('${this.userInfo?.avatar ? 'https://ya-praktikum.tech/api/v2/resources' + this.userInfo?.avatar : ""}')"
+        for="avatar">
+    </label>`;
     const updateInfoBtn = new LinkButton({
       text: "Update user info",
       events: {
         click: () => {
-          render("#app", new ProfileUpdateInfoPage());
+          this.router.go("/settings");
         },
       },
     });
@@ -28,7 +61,15 @@ export class ProfileInfoPage extends Block {
       text: "Update password",
       events: {
         click: () => {
-          render("#app", new ProfileUpdatePasswordPage());
+          this.router.go("/update-password");
+        },
+      },
+    });
+    const getBackBtn = new LinkButton({
+      text: "Go back",
+      events: {
+        click: () => {
+          this.router.go("/messenger");
         },
       },
     });
@@ -37,7 +78,7 @@ export class ProfileInfoPage extends Block {
       color: "red",
       events: {
         click: () => {
-          render("#app", new NotFoundPage());
+          this.router.go("/404");
         },
       },
     });
@@ -46,7 +87,7 @@ export class ProfileInfoPage extends Block {
       color: "red",
       events: {
         click: () => {
-          render("#app", new ServerErrorPage());
+          this.router.go("/500");
         },
       },
     });
@@ -55,16 +96,19 @@ export class ProfileInfoPage extends Block {
       color: "red",
       events: {
         click: () => {
-          render("#app", new SignInPage());
+          authController.logOut();
         },
       },
     });
     return compile(template, {
+      userInfo: this.userInfo,
       updateInfoBtn,
       updatePassBtn,
       notFoundErrBtn,
       serverErrBtn,
       logOutBtn,
+      getBackBtn,
+      profileAvatarBtn
     });
   }
 }
