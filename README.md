@@ -5,4 +5,4 @@
 
 ## Links
 [Heroku](https://yandex-chat.herokuapp.com/) | [Figma](https://www.figma.com/file/WtjYenenghq0wFO5EUqdXQ/Chateo-UI-Kit-Messenger-App-Community?node-id=0%3A1) | [Netlify](https://awesome-bell-06d0fd.netlify.app/)  | 
-[Ссылка на PR Sprint 3](https://github.com/ArthurDzhimiev/middle.messenger.praktikum.yandex/pull/15)
+[Ссылка на PR Sprint 4](https://github.com/ArthurDzhimiev/middle.messenger.praktikum.yandex/pull/18)
