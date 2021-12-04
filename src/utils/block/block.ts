@@ -18,7 +18,7 @@ export default class Block<P = any> {
     wrapperClassName?: string;
   } | null = null;
   eventBus: EventBus;
-  props: object;
+  props: any;
   public id = nanoid(6);
 
   constructor(tagName = "div", props = {}, wrapperClassName?: string) {

@@ -1,5 +1,8 @@
+// @ts-ignore
 import chai from "chai";
+// @ts-ignore
 import sinon from "sinon";
+// @ts-ignore
 import sinonChai from "sinon-chai";
 import { HTTPTransport, METHODS } from "./fetch";
 import { JSDOM } from "jsdom";

@@ -51,7 +51,7 @@ export class UserController {
   }
   async searchUser(data: SearchUserBody) {
     try {
-      const users = await userService.searchUser(data);
+      const users: any = await userService.searchUser(data);
       return JSON.parse(users)
     } catch (e) {
       settFormErr(e);
