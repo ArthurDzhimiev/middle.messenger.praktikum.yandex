@@ -1,7 +1,7 @@
 import { HTTPTransport } from "../../utils/api/fetch";
 import { SignInData, SignupData } from "./auth-api.model";
 
-const APIInstance = new HTTPTransport();
+const http = new HTTPTransport();
 
 export default class AuthApiService {
   private static __instance: AuthApiService;
@@ -14,18 +14,18 @@ export default class AuthApiService {
   }
 
   signIn(data: SignInData): Promise<XMLHttpRequest> {
-    return APIInstance.post("auth/signin", { data });
+    return http.post("auth/signin", { data });
   }
 
   signUp(data: SignupData): Promise<XMLHttpRequest> {
-    return APIInstance.post("auth/signup", { data });
+    return http.post("auth/signup", { data });
   }
 
   getUser(): Promise<XMLHttpRequest> {
-    return APIInstance.get("auth/user");
+    return http.get("auth/user");
   }
 
   logout(): Promise<XMLHttpRequest> {
-    return APIInstance.post("auth/logout");
+    return http.post("auth/logout");
   }
 }
