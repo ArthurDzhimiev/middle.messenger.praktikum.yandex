@@ -11,8 +11,14 @@ interface HTTPOptions {
   data?: Record<string, any> | null;
 }
 
+const BASE_URL = "https://ya-praktikum.tech/api/v2/";
+
 export class HTTPTransport {
-  baseUrl = "https://ya-praktikum.tech/api/v2/";
+  private baseUrl: string;
+
+  constructor(baseUrl: string = BASE_URL) {
+    this.baseUrl = baseUrl;
+  }
 
   get = (url: string, options: HTTPOptions = {}): Promise<XMLHttpRequest> => {
     return this.request(url, METHODS.GET, options, options.timeout);
@@ -38,7 +44,10 @@ export class HTTPTransport {
   ): Promise<XMLHttpRequest> {
     const data = options.data;
     const headers = options.headers || {};
-    if (!headers["content-type"] && !(data && data instanceof window.FormData)) {
+    if (
+      !headers["content-type"] &&
+      !(data && data instanceof window.FormData)
+    ) {
       headers["content-type"] = "application/json";
     }
     return new Promise((resolve, reject) => {

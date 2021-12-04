@@ -1,7 +1,7 @@
 import { HTTPTransport } from "../../utils/api/fetch";
 import {SearchUserBody, UpdateUserInfoBody, UpdateUserPasswordBody} from "./user-api.model";
 
-const APIInstance = new HTTPTransport();
+const http = new HTTPTransport();
 
 export default class UserApiService {
   private static __instance: UserApiService;
@@ -14,17 +14,17 @@ export default class UserApiService {
   }
 
   updateUserInfo(data: UpdateUserInfoBody): Promise<XMLHttpRequest> {
-    return APIInstance.put("user/profile", { data });
+    return http.put("user/profile", { data });
   }
 
   updateUserAvatar(data: FormData): Promise<XMLHttpRequest> {
-    return APIInstance.put("user/profile/avatar", { data });
+    return http.put("user/profile/avatar", { data });
   }
 
   updateUserPassword(data: UpdateUserPasswordBody): Promise<XMLHttpRequest> {
-    return APIInstance.put("user/password/", { data });
+    return http.put("user/password/", { data });
   }
   searchUser(data: SearchUserBody): Promise<XMLHttpRequest> {
-    return APIInstance.post("user/search/", { data });
+    return http.post("user/search/", { data });
   }
 }
