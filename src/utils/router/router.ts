@@ -17,7 +17,7 @@ export function render(query: string, block: Block) {
 export class Route {
   _pathname: string;
   _blockClass: any;
-  _block: Block | null;
+  _block: any;
   _props: {
     rootQuery: string;
   };

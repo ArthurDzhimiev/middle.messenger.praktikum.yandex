@@ -1,7 +1,7 @@
 import { HTTPTransport } from "../../utils/api/fetch";
 import { ChatUpdateUsersBody, CreateChatBody } from "./chats-api.model";
 
-const APIInstance = new HTTPTransport();
+const http = new HTTPTransport();
 
 export default class ChatsApiService {
   private static __instance: ChatsApiService;
@@ -14,29 +14,29 @@ export default class ChatsApiService {
   }
 
   createChat(data: CreateChatBody): Promise<XMLHttpRequest> {
-    return APIInstance.post("chats", { data });
+    return http.post("chats", { data });
   }
 
   deleteChat(chatId: number): Promise<XMLHttpRequest> {
-    return APIInstance.delete("chats", { data: { chatId } });
+    return http.delete("chats", { data: { chatId } });
   }
 
   getChats(): Promise<XMLHttpRequest> {
-    return APIInstance.get("chats");
+    return http.get("chats");
   }
 
   getChatUsers(id: number): Promise<XMLHttpRequest> {
-    return APIInstance.get(`chats/${id}/users`);
+    return http.get(`chats/${id}/users`);
   }
 
   getChatToken(id: number): Promise<XMLHttpRequest> {
-    return APIInstance.post(`chats/token/${id}`, { data: { id } });
+    return http.post(`chats/token/${id}`, { data: { id } });
   }
 
   addUsersToChat(data: ChatUpdateUsersBody): Promise<XMLHttpRequest> {
-    return APIInstance.put("chats/users", { data });
+    return http.put("chats/users", { data });
   }
   deleteUsersFromChat(data: ChatUpdateUsersBody): Promise<XMLHttpRequest> {
-    return APIInstance.delete("chats/users", { data });
+    return http.delete("chats/users", { data });
   }
 }

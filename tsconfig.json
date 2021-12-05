@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "node",
+    "module": "es2015",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,

@@ -17,6 +17,7 @@ import { ChatsController } from "../../controllers/chats.controller";
 import { Button } from "../../components/button/button";
 import { ChatPage } from "../chat/chat";
 import { setChat } from "../../store/chat";
+import "../../../static/styles/main.scss";
 
 const chatsController = new ChatsController();
 
